@@ -15,22 +15,20 @@ const queryClient = new QueryClient()
 function App() {
   return (
     <>
-      <PassageProvider appId={process.env.REACT_APP_PASSAGE_APP_ID}>
-        <QueryClientProvider client={queryClient}>
-          <div>
-            <Banner />
-            <div className={styles.mainContainer}>
-              <Routes>
-                <Route path="/" element={<Home />}></Route>
-                <Route path="/dashboard" element={<Dashboard />}></Route>
-                <Route path="/profile" element={<Profile />}></Route>
-              </Routes>
-            </div>
+      <PassageProvider appId={import.meta.env.VITE_APP_PASSAGE_APP_ID}>
+        <div>
+          <Banner />
+          <div className={styles.mainContainer}>
+            <Routes>
+              <Route path="/" element={<Home />}></Route>
+              <Route path="/dashboard" element={<Dashboard />}></Route>
+              <Route path="/profile" element={<Profile />}></Route>
+            </Routes>
           </div>
-        </QueryClientProvider>
+        </div>
       </PassageProvider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
