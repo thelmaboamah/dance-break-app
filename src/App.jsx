@@ -1,5 +1,4 @@
-import { PassageProvider } from '@passageidentity/passage-react'
-import React from "react";
+import { PassageProvider } from "@passageidentity/passage-react";
 import { Routes, Route } from "react-router-dom";
 
 import Home from "./views/Home";
@@ -9,13 +8,12 @@ import Banner from "./components/banner";
 import styles from "./styles/App.module.css";
 
 // import '@passageidentity/passage-elements/passage-auth'
-import './App.css'
+import "./App.css";
 
 function App() {
-
   return (
     <>
-      <PassageProvider appId={process.env.REACT_APP_PASSAGE_APP_ID}>
+      <PassageProvider appId={import.meta.env.VITE_APP_PASSAGE_APP_ID}>
         <div>
           <Banner />
           <div className={styles.mainContainer}>
@@ -28,7 +26,7 @@ function App() {
         </div>
       </PassageProvider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
