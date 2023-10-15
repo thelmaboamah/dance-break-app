@@ -7,8 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "format": "prettier --write \"**/*.{js,jsx,cjs,css,yaml}\"",
-    "format:check": "prettier --check \"**/*.{js,jsx,cjs,css,yaml}\"",
+    "format": "prettier --write \"**/*.{js,jsx,cjs,css,yaml,json}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,cjs,css,yaml,json}\"",
     "preview": "vite preview"
   },
   "dependencies": {
