@@ -1,17 +1,10 @@
-import { defineConfig, loadEnv } from "vite";
+import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd(), "");
-
+export default defineConfig(() => {
   return {
-    define: {
-      "process.env.REACT_APP_PASSAGE_APP_ID": JSON.stringify(
-        env.REACT_APP_PASSAGE_APP_ID,
-      ),
-    },
     plugins: [
       react(),
       VitePWA({

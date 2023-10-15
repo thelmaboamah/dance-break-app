@@ -13,7 +13,7 @@ import "./App.css";
 function App() {
   return (
     <>
-      <PassageProvider appId={process.env.REACT_APP_PASSAGE_APP_ID}>
+      <PassageProvider appId={import.meta.env.VITE_APP_PASSAGE_APP_ID}>
         <div>
           <Banner />
           <div className={styles.mainContainer}>
