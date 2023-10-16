@@ -1,3 +1,3 @@
 curl -i --location --request POST 'https://ajbaqfkhsjbpkelepjpe.supabase.co/functions/v1/signin' \
-   --header 'Content-Type: application/json' \
-   --data '{"userId": "UB8eNMRCeBLVmIrg59ekFnNx", "task":"completely new task"}'
+   --header 'Content-Type: application/json' \ 
+   --data '{"userId": "UB8eNMRCeBLVmIrg59ekFnNx", "title":"completely new new task"}'

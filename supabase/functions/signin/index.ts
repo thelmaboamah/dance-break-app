@@ -10,8 +10,9 @@ import { createHmac } from "https://deno.land/std@0.173.0/node/crypto.ts";
 
 
 const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "mode,Access-Control-Allow-Origin,Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers,Content-Type,authorization, x-client-info, apikey",
+  "Access-Control-Allow-Origin": "http://localhost:5173",
+  "Access-Control-Allow-Headers": "mode, content-type, authorization, x-client-info, apikey",
+  "Access-Control-Allow-Methods": "POST, GET"
 };
 
 interface Task {
@@ -29,8 +30,9 @@ async function getAllTasks(supabaseClient: SupabaseClient) {
 }
 
 async function createTask(supabaseClient: SupabaseClient, task: Task) {
-  console.log("received todo ", task);
+  console.log("received task ", task);
   const { error } = await supabaseClient.from("todo").insert(task);
+  console.log("error with insert ", error)
   if (error) throw error;
 
   return new Response(JSON.stringify({ task }), {
@@ -54,7 +56,7 @@ Deno.serve(async (req) => {
     console.log("received request ", body);
     
     const { userId } = body;
-    task = body.task
+    task = {title: body.title}
     console.log("received userId ", userId);
     console.log("received task ", task);
     const payload = {
@@ -92,9 +94,8 @@ Deno.serve(async (req) => {
     case method === 'GET':
       return getAllTasks(supabaseClient)
     default:
-      return getAllTasks(supabaseClient)
+      return createTask(supabaseClient, task)
   }
-  return getAllTasks(supabaseClient)
 });
 
 const toBase64 = (obj) => {

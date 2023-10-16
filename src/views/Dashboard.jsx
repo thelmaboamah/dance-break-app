@@ -11,7 +11,7 @@ function Dashboard() {
   console.log("User info is ", userInfo)
 
   const query = useQuery({ queryKey: ['gettingTasks', userInfo?.id], queryFn: () => fetchTableData(userInfo?.id) })
-  console.log("Query is ", query.data)
+  console.log("Query is ", query.data?.task)
   
   if (loading) {
     return (
@@ -38,7 +38,7 @@ function Dashboard() {
           You successfully signed in with Passage. This is your homepage. <br />
           <br />
           Your username is: {userInfo?.email}
-          <div>Your data: {query.data}</div>
+          <div>Your data: {query?.data?.task.title}</div>
         </div>
         <LogoutButton />
       </div>
