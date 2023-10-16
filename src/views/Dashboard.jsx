@@ -8,10 +8,9 @@ import { useQuery } from '@tanstack/react-query'
 
 function Dashboard() {
   const { userInfo, loading } = usePassageUserInfo();
-  console.log("USer info is ", userInfo)
+  console.log("User info is ", userInfo)
 
-  const tableName = 'notes'
-  const query = useQuery({ queryKey: ['todos', tableName], queryFn: () => fetchTableData(tableName) })
+  const query = useQuery({ queryKey: ['gettingTasks', userInfo?.id], queryFn: () => fetchTableData(userInfo?.id) })
   console.log("Query is ", query.data)
   
   if (loading) {
