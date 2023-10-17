@@ -26,8 +26,9 @@ function Dashboard() {
       }
     >
       <div className={styles.dashboard}>
-        <div className={styles.title}>Welcome</div>
-        <div className={styles.message}>
+        <div className="font-dmSans text-h1-regular">Welcome to</div>
+        <div className="font-dmSans text-h1-bold">Dance Break</div>
+        <div className="font-dmSans text-body py-[24px]">
           You successfully signed in with Passage. This is your homepage. <br />
           <br />
           Your username is: {userInfo?.email}
