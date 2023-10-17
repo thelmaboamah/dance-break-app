@@ -51,9 +51,6 @@ export default {
         lineHeight: '1.2em',
       }]
     },
-    lineHeight: {
-      normal: '1.em',
-    },
     extend: {},
   },
   plugins: [],
