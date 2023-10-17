@@ -10,13 +10,11 @@ import styles from "./styles/App.module.css";
 // import '@passageidentity/passage-elements/passage-auth'
 import "./App.css";
 
-import Spotify from "./views/Spotify";
-
 function App() {
   return (
     <>
-    <Spotify/>
-      {/* <PassageProvider appId={import.meta.env.VITE_APP_PASSAGE_APP_ID}>
+      {/* <Spotify/> */}
+      <PassageProvider appId={import.meta.env.VITE_APP_PASSAGE_APP_ID}>
         <div>
           <Banner />
           <div className={styles.mainContainer}>
@@ -27,7 +25,7 @@ function App() {
             </Routes>
           </div>
         </div>
-      </PassageProvider> */}
+      </PassageProvider>
     </>
   );
 }
