@@ -49,6 +49,7 @@ export default {
       }],
       'timer': ['48px', {
         lineHeight: '1.2em',
+        fontWeight: '400'
       }]
     },
     extend: {},
