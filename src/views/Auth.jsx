@@ -4,12 +4,10 @@ import {
 } from "@passageidentity/passage-react";
 import { Navigate } from "react-router-dom";
 
-function Home() {
+export default function Auth() {
   return (
-    <PassageUnAuthGuard authComp={<Navigate to="/dashboard" />}>
+    <PassageUnAuthGuard authComp={<Navigate to="/welcome" />}>
       <PassageAuth />
     </PassageUnAuthGuard>
   );
 }
-
-export default Home;
