@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 const redirectUri = "http://localhost:5173/spotify-auth";
 
@@ -79,7 +79,7 @@ export default function SpotifyAuth() {
 
   return (
     <ul>
-      {playlists.map(({ id, name, images, tracks }) => (
+      {playlists.map(({ id, name, images}) => (
         <li key={id}>
           <img
             alt={`Cover art for ${name}`}
