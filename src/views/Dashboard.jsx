@@ -1,11 +1,11 @@
 import styles from "../styles/Dashboard.module.css";
 import { PassageAuthGuard } from "@passageidentity/passage-react";
 import { usePassageUserInfo } from "../hooks";
-import { createTaskInDb, loginUser } from "../utils/queries";
+import { loginUser } from "../utils/queries";
 import { createClient } from "@supabase/supabase-js";
 import AuthRedirect from "../components/AuthRedirect";
+import LogoutButton from "../components/LogoutButton";
 import { useState, useEffect } from "react";
-import React from "react";
 import { Timer } from "../components/Timer";
 
 function Dashboard() {
@@ -60,7 +60,7 @@ function Dashboard() {
         <div className="font-dmSans text-body py-[24px]">
           You successfully signed in with Passage. This is your homepage. <br />
           <br />
-          Your username is: {userInfo?.email}
+          {/* Your username is: {userInfo?.email} */}
         </div>
         <Timer workDuration={60}/>
         <LogoutButton />
