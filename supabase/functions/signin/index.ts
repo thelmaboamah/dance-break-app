@@ -15,7 +15,7 @@ const corsHeaders = {
   "Access-Control-Allow-Methods": "POST, GET"
 };
 
-// Actual signin function
+// TODO: either add update function for spotify token or include it in login
 async function loginUsers(body) {
   const { userId, email, first_name } = body;
 
