@@ -79,7 +79,7 @@ export default function SpotifyAuth() {
 
   return (
     <ul>
-      {playlists.map(({ id, name, images}) => (
+      {playlists.map(({ id, name, images }) => (
         <li key={id}>
           <img
             alt={`Cover art for ${name}`}

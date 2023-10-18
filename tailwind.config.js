@@ -78,11 +78,11 @@ export default {
       ],
     },
     spacing: {
-      '8': '8px',
-      '24': '24px',
-      '32': '32px',
-      'logo-lg': '124px', //large logo size
-      'logo-sm': '40px' //small logo size for nav
+      8: "8px",
+      24: "24px",
+      32: "32px",
+      "logo-lg": "124px", //large logo size
+      "logo-sm": "40px", //small logo size for nav
     },
     extend: {},
   },
