@@ -10,7 +10,7 @@ export const usePassageLogout = () => {
         currentSession.signOut();
       }
     } catch (err) {
-      // an error occured
+      console.log("Error on signout ", err);
     }
   };
 
