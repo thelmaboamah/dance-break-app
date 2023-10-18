@@ -1,11 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
 
-const redirectUri = "http://localhost:5173/playlists";
+const redirectUri = "http://localhost:5173/spotify-auth";
 
 export default function SpotifyAuth() {
   const [searchParams] = useSearchParams();
   const code = searchParams.get("code");
+  const [playlists, setPlaylists] = useState(null);
 
   useEffect(() => {
     async function fetchAccessToken() {
@@ -34,15 +35,62 @@ export default function SpotifyAuth() {
         })
         .then((data) => {
           localStorage.setItem("access_token", data.access_token);
+          // clear url params
+          window.location.search = "";
         })
         .catch((error) => {
           console.error("Error:", error);
         });
     }
-    fetchAccessToken();
+    if (code) {
+      fetchAccessToken();
+    }
   }, [code]);
 
-  return <div>Blah</div>;
+  useEffect(() => {
+    let accessToken = localStorage.getItem("access_token");
+
+    async function getProfile(accessToken) {
+      const response = await fetch("https://api.spotify.com/v1/me/playlists", {
+        headers: {
+          Authorization: "Bearer " + accessToken,
+        },
+      });
+
+      const data = await response.json();
+      console.log(data);
+      setPlaylists(data.items);
+      // return data;
+    }
+    if (accessToken) {
+      getProfile(accessToken);
+    }
+  }, []);
+
+  /** Playlist item properties:
+   * id: string
+   *name: string
+   images: []obj {url: string} 
+   tracks: {href: string, total: number}
+   */
+  if (!playlists) {
+    return <p>No playlists</p>;
+  }
+
+  return (
+    <ul>
+      {playlists.map(({ id, name, images, tracks }) => (
+        <li key={id}>
+          <img
+            alt={`Cover art for ${name}`}
+            src={images[0].url}
+            className="w-[100px]"
+          />
+          <span>{name}</span>
+        </li>
+      ))}
+    </ul>
+  );
 }
 
 // async function fetchAccessToken() {
