@@ -12,15 +12,14 @@ function Dashboard() {
   const { userInfo, loading } = usePassageUserInfo();
   const [ supaClient, setSupaClient ] = useState();
   const [ isLogged, setIsLogged ] = useState(false);
-
+  
   useEffect(() => {
     const supabase = createClient(
       import.meta.env.VITE_PUBLIC_SUPABASE_URL,
       import.meta.env.VITE_PUBLIC_SUPABASE_ANON_KEY,
     );
-
     setSupaClient(supabase);
-    console.log("created supa client ", supaClient)
+    console.log("created supa client ")
   }, []);
 
   useEffect(() => {
@@ -42,7 +41,7 @@ function Dashboard() {
     ) {
       goToLogin(userInfo, supaClient);
     }
-  }, [userInfo, supaClient])
+  }, [userInfo, supaClient, isLogged])
 
   if (loading) {
     return (
