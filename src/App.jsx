@@ -3,10 +3,9 @@ import { Routes, Route } from "react-router-dom";
 
 import { PassageProvider } from "@passageidentity/passage-react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Home from "./views/Home";
+import Auth from "./views/Auth";
 import Dashboard from "./views/Dashboard";
 import Profile from "./views/Profile";
-import Banner from "./components/banner";
 import styles from "./styles/App.module.css";
 import "./App.css";
 
@@ -18,11 +17,11 @@ function App() {
       <PassageProvider appId={import.meta.env.VITE_APP_PASSAGE_APP_ID}>
         <QueryClientProvider client={queryClient}>
           <div>
-            <Banner />
             <div className={styles.mainContainer}>
               <Routes>
-                <Route path="/" element={<Home />}></Route>
-                <Route path="/dashboard" element={<Dashboard />}></Route>
+                <Route path="/" element={<Auth />}></Route>
+                <Route path="/auth" element={<Auth />}></Route>
+                <Route path="/welcome" element={<Dashboard />}></Route>
                 <Route path="/profile" element={<Profile />}></Route>
               </Routes>
             </div>
