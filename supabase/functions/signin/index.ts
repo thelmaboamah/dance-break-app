@@ -11,22 +11,24 @@ import { createHmac } from "https://deno.land/std@0.173.0/node/crypto.ts";
 // TODO: add netlify to origin
 const corsHeaders = {
   "Access-Control-Allow-Origin": "http://localhost:5173",
-  "Access-Control-Allow-Headers": "mode, content-type, authorization, x-client-info, apikey",
-  "Access-Control-Allow-Methods": "POST, GET"
+  "Access-Control-Allow-Headers":
+    "content-type, authorization, x-client-info, apikey",
+  "Access-Control-Allow-Methods": "POST",
 };
 
 // TODO: either add update function for spotify token or include it in login
+// upsert doesn't work with userId primary key, and with just id - no way to know it
 async function loginUsers(body) {
-  const { userId, email, first_name } = body;
+  const { userId, email, first_name, spotify_token } = body;
 
   console.log("received userId for login ", userId);
   console.log("received first_name ", first_name);
 
   const payload = {
-    userId
+    userId,
   };
 
-  const secretKey = Deno.env.get("SUPAB_JST_SECRET");
+  const secretKey = Deno.env.get("SUPA_JWT_SECRET");
   const token = await generateToken(payload, secretKey);
 
   const options = {};
@@ -42,36 +44,38 @@ async function loginUsers(body) {
     options,
   );
 
-  const { error } = await supabaseClient.from("users").insert({ email, first_name });
+  const { error } = await supabaseClient
+    .from("users")
+    .insert({ email, first_name, spotify_token }, { onConflict: 'handle' });
   if (error) throw error;
 
   return new Response(JSON.stringify({ token, userId }), {
-    headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    headers: { ...corsHeaders, "Content-Type": "application/json" },
     status: 200,
-  })
+  });
 }
 
 // Listening and serving begins
 Deno.serve(async (req) => {
-  const { url, method } = req
+  const { url, method } = req;
   const options = {};
 
-  if (method === 'OPTIONS') {
-    console.log("in the options")
-    return new Response('ok', { headers: corsHeaders })
+  if (method === "OPTIONS") {
+    console.log("in the options");
+    return new Response("ok", { headers: corsHeaders });
   }
 
-  const body = await req.json()
+  const body = await req.json();
   console.log("received request ", body);
 
-  return loginUsers(body)
+  return loginUsers(body);
 });
 
 // Signing related functions
 const toBase64 = (obj) => {
   // converts the obj to a string
   const str = JSON.stringify(obj);
-  return btoa(str)
+  return btoa(str);
 };
 
 const replaceSpecialChars = (b64string) => {
@@ -99,8 +103,8 @@ const createSignature = (jwtB64Header, jwtB64Payload, secret) => {
 
 async function generateToken(payload, secret) {
   const header = {
-    alg: 'HS256',
-    typ: 'JWT',
+    alg: "HS256",
+    typ: "JWT",
   };
   const b64Header = toBase64(header);
   const jwtB64Header = replaceSpecialChars(b64Header);
