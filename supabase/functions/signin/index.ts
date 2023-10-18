@@ -8,39 +8,50 @@ import {
 } from "https://esm.sh/@supabase/supabase-js";
 import { createHmac } from "https://deno.land/std@0.173.0/node/crypto.ts";
 
-
+// TODO: add netlify to origin
 const corsHeaders = {
   "Access-Control-Allow-Origin": "http://localhost:5173",
   "Access-Control-Allow-Headers": "mode, content-type, authorization, x-client-info, apikey",
   "Access-Control-Allow-Methods": "POST, GET"
 };
 
-interface Task {
-  title: string;
-}
+// Actual signin function
+async function loginUsers(body) {
+  const { userId, email, first_name } = body;
 
-async function getAllTasks(supabaseClient: SupabaseClient) {
-  const { data: tasks, error } = await supabaseClient.from('todo').select('*')
-  if (error) throw error
+  console.log("received userId for login ", userId);
+  console.log("received first_name ", first_name);
 
-  return new Response(JSON.stringify({ tasks }), {
+  const payload = {
+    userId
+  };
+
+  const secretKey = Deno.env.get("SUPAB_JST_SECRET");
+  const token = await generateToken(payload, secretKey);
+
+  const options = {};
+  options.global = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const supabaseClient = createClient(
+    Deno.env.get("SUPABASE_URL"),
+    Deno.env.get("SUPABASE_ANON_KEY"),
+    options,
+  );
+
+  const { error } = await supabaseClient.from("users").insert({ email, first_name });
+  if (error) throw error;
+
+  return new Response(JSON.stringify({ token, userId }), {
     headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     status: 200,
   })
 }
 
-async function createTask(supabaseClient: SupabaseClient, task: Task) {
-  console.log("received task ", task);
-  const { error } = await supabaseClient.from("todo").insert(task);
-  console.log("error with insert ", error)
-  if (error) throw error;
-
-  return new Response(JSON.stringify({ task }), {
-    headers: { ...corsHeaders, "Content-Type": "application/json" },
-    status: 200,
-  });
-}
-
+// Listening and serving begins
 Deno.serve(async (req) => {
   const { url, method } = req
   const options = {};
@@ -50,54 +61,13 @@ Deno.serve(async (req) => {
     return new Response('ok', { headers: corsHeaders })
   }
 
-  let task = null
-  if (method === 'POST') {
-    const body = await req.json()
-    console.log("received request ", body);
-    
-    const { userId } = body;
-    task = {title: body.title}
-    console.log("received userId ", userId);
-    console.log("received task ", task);
-    const payload = {
-      userId,
-    };
-    console.log("Payload ", payload);
+  const body = await req.json()
+  console.log("received request ", body);
 
-    const secretKey = Deno.env.get("SUPAB_JST_SECRET");
-    console.log("secret key passed");
-
-    const token = await generateToken(payload, secretKey);
-    console.log("passed jwt", token);
-
-    // Initialize Supabase client with authorization headers.
-    
-    options.global = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-  }
-
-  const supabaseClient = createClient(
-    Deno.env.get("SUPABASE_URL"),
-    Deno.env.get("SUPABASE_ANON_KEY"),
-    options,
-  );
-
-  console.log("created client ", supabaseClient);
-
-  switch (true) {
-    case method === 'POST':
-      console.log("sending task ", task);
-      return createTask(supabaseClient, task)
-    case method === 'GET':
-      return getAllTasks(supabaseClient)
-    default:
-      return createTask(supabaseClient, task)
-  }
+  return loginUsers(body)
 });
 
+// Signing related functions
 const toBase64 = (obj) => {
   // converts the obj to a string
   const str = JSON.stringify(obj);
@@ -119,14 +89,10 @@ const replaceSpecialChars = (b64string) => {
 };
 
 const createSignature = (jwtB64Header, jwtB64Payload, secret) => {
-  // create a HMAC(hash based message authentication code) using sha256 hashing alg
+  // create a HMAC(hash based message authentication code) using sha256 hashing algo
   let signature = createHmac("sha256", secret);
-  // use the update method to hash a string formed from our jwtB64Header a period and
-  //jwtB64Payload
   signature.update(jwtB64Header + "." + jwtB64Payload);
-  //signature needs to be converted to base64 to make it usable
   signature = signature.digest("base64");
-  //of course we need to clean the base64 string of URL special characters
   signature = replaceSpecialChars(signature);
   return signature;
 };
@@ -138,14 +104,11 @@ async function generateToken(payload, secret) {
   };
   const b64Header = toBase64(header);
   const jwtB64Header = replaceSpecialChars(b64Header);
-  console.log("the header is: ", jwtB64Header);
 
   const b64Payload = toBase64(payload);
   const jwtB64Payload = replaceSpecialChars(b64Payload);
-  console.log("the payload is: ", jwtB64Payload);
 
   const signature = createSignature(jwtB64Header, jwtB64Payload, secret);
-  console.log("the signature is: ", signature);
   const jsonWebToken = jwtB64Header + "." + jwtB64Payload + "." + signature;
   return jsonWebToken;
 }

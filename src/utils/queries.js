@@ -27,4 +27,24 @@ const readTasksFromDb = async (userId, supabase) => {
   return data;
 };
 
-export { createTaskInDb, readTasksFromDb };
+const loginUser = async (userInfo, supabase) => {
+  console.log("Login started with client ", userInfo);
+  const dataPayload = {
+    userId: userInfo?.id,
+    email: userInfo?.email,
+    first_name: userInfo?.user_metadata.first_name
+  }
+  console.log("seding this login payload: ", dataPayload)
+  const { data, error } = await supabase.functions.invoke("signin", {
+    headers: {
+      mode: "no-cors",
+    },
+    body: JSON.stringify(dataPayload),
+  });
+  if (error) {
+    console.log("Error on data fetch: ", error);
+  }
+  return data;
+};
+
+export { createTaskInDb, readTasksFromDb, loginUser };
