@@ -17,11 +17,11 @@ const corsHeaders = {
 };
 
 type Task = {
-  duration: number | null
-  is_active: boolean | null
-  start_time: string | null
-  type: string | null
-}
+  duration: number | null;
+  is_active: boolean | null;
+  start_time: string | null;
+  type: string | null;
+};
 
 async function getTasks(supabaseClient: SupabaseClient) {
   const { data: tasks, error } = await supabaseClient.from("tasks").select("*");
@@ -57,17 +57,20 @@ Deno.serve(async (req) => {
 
   try {
     // Create a Supabase client with the Auth context of the logged in user.
-    const receivedAuth = req.headers.get("Authorization")
-    const receivedToken = receivedAuth.split(" ")[1]
-    console.log(Deno.env.get("SUPA_JWT_SECRET"))
-    const verification = verifyJWT(receivedToken, Deno.env.get("SUPA_JWT_SECRET"))
-    console.log("verify resulted in ", verification)
+    const receivedAuth = req.headers.get("Authorization");
+    const receivedToken = receivedAuth.split(" ")[1];
+    console.log(Deno.env.get("SUPA_JWT_SECRET"));
+    const verification = verifyJWT(
+      receivedToken,
+      Deno.env.get("SUPA_JWT_SECRET"),
+    );
+    console.log("verify resulted in ", verification);
 
     if (!verification.userId) {
       return new Response(JSON.stringify({ error: error.message }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
         status: 401,
-    });
+      });
     }
     const supabaseClient = createClient(
       Deno.env.get("SUPABASE_URL") ?? "",
@@ -83,7 +86,7 @@ Deno.serve(async (req) => {
     if (method === "POST") {
       const body = await req.json();
       task = body.task;
-      console.log("received request with task ", task)
+      console.log("received request with task ", task);
     }
     console.log("going into respective functions ");
     switch (true) {
@@ -104,14 +107,13 @@ Deno.serve(async (req) => {
   }
 });
 
-
-function verifyJWT(token:string, secret:string) {
-  const parts = token.split('.');
+function verifyJWT(token: string, secret: string) {
+  const parts = token.split(".");
   if (parts.length !== 3) return;
 
-  const newVal = `${parts[0]}.${parts[1]}`
+  const newVal = `${parts[0]}.${parts[1]}`;
   const calcSign = createHmac("sha256", secret).update(newVal).digest("base64");
-  const newSign = replaceSpecialChars(calcSign)
+  const newSign = replaceSpecialChars(calcSign);
 
   if (newSign !== parts[2]) return;
   const pyld = JSON.parse(new TextDecoder().decode(decode(parts[1])));

@@ -10,38 +10,38 @@ import { Timer } from "../components/Timer";
 
 function Dashboard() {
   const { userInfo, loading } = usePassageUserInfo();
-  const [ supaClient, setSupaClient ] = useState();
-  const [ isLogged, setIsLogged ] = useState(false);
-  
+  const [supaClient, setSupaClient] = useState();
+  const [isLogged, setIsLogged] = useState(false);
+
   useEffect(() => {
     const supabase = createClient(
       import.meta.env.VITE_PUBLIC_SUPABASE_URL,
       import.meta.env.VITE_PUBLIC_SUPABASE_ANON_KEY,
     );
     setSupaClient(supabase);
-    console.log("created supa client ")
+    console.log("created supa client ");
   }, []);
 
   useEffect(() => {
     const goToLogin = async (userInfo, supaClient) => {
-      setIsLogged(true)
+      setIsLogged(true);
       const data = await loginUser(userInfo, supaClient);
-      console.log("client received all this: ", data)
-      sessionStorage.setItem("supa_token", data?.token)
-    }
-    const tokenInSession = sessionStorage.getItem("supa_token")
+      console.log("client received all this: ", data);
+      sessionStorage.setItem("supa_token", data?.token);
+    };
+    const tokenInSession = sessionStorage.getItem("supa_token");
 
     if (
       !isLogged &&
       userInfo &&
       supaClient &&
       //TODO: test again for undefined - seems it doesn't work
-      //add logic how to refresh token? 
+      //add logic how to refresh token?
       (tokenInSession === undefined || tokenInSession === null)
     ) {
       goToLogin(userInfo, supaClient);
     }
-  }, [userInfo, supaClient, isLogged])
+  }, [userInfo, supaClient, isLogged]);
 
   if (loading) {
     return (
@@ -52,7 +52,7 @@ function Dashboard() {
   }
 
   return (
-    <PassageAuthGuard unAuthComp={<AuthRedirect />} >
+    <PassageAuthGuard unAuthComp={<AuthRedirect />}>
       <div className={styles.dashboard}>
         <div className="font-dmSans text-h1-regular">Welcome to</div>
         <div className="font-dmSans text-h1-bold">Dance Break</div>
@@ -61,7 +61,7 @@ function Dashboard() {
           <br />
           {/* Your username is: {userInfo?.email} */}
         </div>
-        <Timer workDuration={60}/>
+        <Timer workDuration={60} />
         <LogoutButton />
       </div>
     </PassageAuthGuard>

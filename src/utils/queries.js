@@ -1,4 +1,3 @@
-
 const createTaskInDb = async (userId, title, supabase) => {
   console.log("Create task with client ", supabase);
   const { data, error } = await supabase.functions.invoke("restful", {
@@ -33,9 +32,9 @@ const loginUser = async (userInfo, supabase) => {
     userId: userInfo?.id,
     email: userInfo?.email,
     first_name: userInfo?.user_metadata.first_name,
-    spotify_token: ""
-  }
-  console.log("seding this login payload: ", dataPayload)
+    spotify_token: "",
+  };
+  console.log("seding this login payload: ", dataPayload);
   const { data, error } = await supabase.functions.invoke("signin", {
     body: JSON.stringify(dataPayload),
   });

@@ -6,7 +6,7 @@ import { useState, useRef, useEffect } from "react";
 //   REALTIME_POSTGRES_CHANGES_LISTEN_EVENT,
 // } from "@supabase/supabase-js";
 
-export const Timer = ( {workDuration}) => {
+export const Timer = ({ workDuration }) => {
   const [timer, setTimer] = useState(workDuration);
   const [start, setStart] = useState(false);
   // const [newTimer, setNewTimer] = useState()

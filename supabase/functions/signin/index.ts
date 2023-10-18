@@ -46,7 +46,7 @@ async function loginUsers(body) {
 
   const { error } = await supabaseClient
     .from("users")
-    .insert({ email, first_name, spotify_token }, { onConflict: 'handle' });
+    .insert({ email, first_name, spotify_token }, { onConflict: "handle" });
   if (error) throw error;
 
   return new Response(JSON.stringify({ token, userId }), {
