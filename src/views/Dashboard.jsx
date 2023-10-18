@@ -1,4 +1,3 @@
-// @ts-ignore
 import styles from "../styles/Dashboard.module.css";
 import { PassageAuthGuard } from "@passageidentity/passage-react";
 import { usePassageUserInfo } from "../hooks";
@@ -10,7 +9,6 @@ import React from "react";
 import { Timer } from "../components/Timer";
 
 function Dashboard() {
-  // const [todos, setTodos] = useState([]);
   const { userInfo, loading } = usePassageUserInfo();
   const [ supaClient, setSupaClient ] = useState();
   const [ isLogged, setIsLogged ] = useState(false);
@@ -56,9 +54,7 @@ function Dashboard() {
 
   return (
     <PassageAuthGuard unAuthComp={<AuthRedirect />} >
-      <div className={styles.dashboard}>
         <Timer workDuration={60}/>
-      </div>
     </PassageAuthGuard>
   );
 }
