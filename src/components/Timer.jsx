@@ -1,23 +1,16 @@
 import { useState, useRef, useEffect } from "react";
 
-// import {
-//   createClient,
-//   REALTIME_LISTEN_TYPES,
-//   REALTIME_POSTGRES_CHANGES_LISTEN_EVENT,
-// } from "@supabase/supabase-js";
+import {
+  REALTIME_LISTEN_TYPES,
+  REALTIME_POSTGRES_CHANGES_LISTEN_EVENT,
+} from "@supabase/supabase-js";
 
-export const Timer = ({ workDuration }) => {
+export const Timer = ({ workDuration, supabaseClient, passageClient }) => {
   const [timer, setTimer] = useState(workDuration);
   const [start, setStart] = useState(false);
   // const [newTimer, setNewTimer] = useState()
   const firstStart = useRef(true);
   const tick = useRef();
-
-  // // Create a single supabase client for interacting with your database
-  // const supabase = createClient(
-  //   import.meta.env.VITE_SUPABASE_URL,
-  //   import.meta.env.VITE_SUPABASE_ANON_KEY,
-  // );
 
   useEffect(() => {
     if (firstStart.current) {
@@ -32,6 +25,12 @@ export const Timer = ({ workDuration }) => {
       tick.current = setInterval(() => {
         setTimer((timer) => timer - 1);
       }, 1000);
+
+      // Insert timer data into the Supabase table when the timer starts.
+      supabaseClient.from("tasks").insert([
+        { duration: workDuration - timer, started_at: new Date() },
+      ]);
+      
     } else {
       console.log("clear interval");
       clearInterval(tick.current);
@@ -39,30 +38,6 @@ export const Timer = ({ workDuration }) => {
 
     return () => clearInterval(tick.current);
   }, [start]);
-
-  // useEffect(() => {
-  //   const todosChannel = supabase.channel("tasks");
-  //   // Subscribe to "todos" channel for PostgreSQL changes (INSERT events)
-  //   todosChannel.on(
-  //     REALTIME_LISTEN_TYPES.POSTGRES_CHANGES,
-  //     {
-  //       event: REALTIME_POSTGRES_CHANGES_LISTEN_EVENT.INSERT,
-  //       schema: "public",
-  //       table: "tasks",
-  //     },
-  //     (payload) => {
-  //       const { new: newInsertedTimer } = payload;
-  //       setTimer(newInsertedTimer)
-  //     },
-  //   );
-
-  //   // Start listening for changes
-  //   todosChannel.subscribe();
-
-  //   return () => {
-  //     todosChannel.unsubscribe();
-  //   };
-  // }, [timer]);
 
   const toggleStart = () => {
     setStart(!start);

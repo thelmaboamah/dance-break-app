@@ -12,11 +12,11 @@ curl -i --location --request POST 'https://ajbaqfkhsjbpkelepjpe.supabase.co/func
   --data '{"task": {
   "duration": "1500",
   "is_active": "true",
-  "start_time": "2023-10-18T14:15:04.486Z",
+  "start_time": "2023-09-18T14:15:04.486Z",
   "type": "work"}}'
 
 ###
 # Testing task receiving 
 # TODO: Add bearer token to test
 curl -i --location --request GET 'https://ajbaqfkhsjbpkelepjpe.supabase.co/functions/v1/restful' \
-  --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJoUTRZVEd2bVZPQ2daZExJdUtQcHQ4bm4ifQ.xnzTRhUI2E3Yenun_nIMeobnSJ11epe9OlE4bQ0T2D0'
+  --header 'Authorization: Bearer '

@@ -19,11 +19,12 @@ function Dashboard() {
       import.meta.env.VITE_PUBLIC_SUPABASE_ANON_KEY,
     );
     setSupaClient(supabase);
-    console.log("created supa client ");
+    console.log("created supa client ", supabase);
   }, []);
 
   useEffect(() => {
     const goToLogin = async (userInfo, supaClient) => {
+      console.log("passage sent us ", userInfo)
       setIsLogged(true);
       const data = await loginUser(userInfo, supaClient);
       console.log("client received all this: ", data);
@@ -61,7 +62,7 @@ function Dashboard() {
           <br />
           {/* Your username is: {userInfo?.email} */}
         </div>
-        <Timer workDuration={60} />
+        <Timer workDuration={60} supabaseClient={supaClient} passageClient={userInfo}/>
         <LogoutButton />
       </div>
     </PassageAuthGuard>
