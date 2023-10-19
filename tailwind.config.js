@@ -3,7 +3,6 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     screens: {
-      mobile: "393px",
       desktop: "1024px",
     },
     colors: {
@@ -12,6 +11,7 @@ export default {
       blueBorder: "#00C2FF", // for download button border
       blueText: "#00526C", // for download button text
       purpleText: "#800080", // for secondary button text
+      yellowBg: "#FFFCED", // for break timer and splash screen
     },
     fontFamily: {
       dmSans: ["DM Sans", "sans-serif"],
@@ -76,6 +76,13 @@ export default {
           fontWeight: "400",
         },
       ],
+    },
+    spacing: {
+      8: "8px",
+      24: "24px",
+      32: "32px",
+      "logo-lg": "124px", //large logo size
+      "logo-sm": "40px", //small logo size for nav
     },
     extend: {},
   },

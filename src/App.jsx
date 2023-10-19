@@ -1,33 +1,27 @@
 import { Routes, Route } from "react-router-dom";
-
 import { PassageProvider } from "@passageidentity/passage-react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Auth from "./views/Auth";
-import Dashboard from "./views/Dashboard";
 import Profile from "./views/Profile";
-import styles from "./styles/App.module.css";
+import SplashPage from "./views/SplashPage";
+import Timer from "./views/Timer";
+import Playlists from "./views/Playlists";
+import SpotifyAuth from "./views/SpotifyAuth";
+import Dashboard from "./views/Dashboard";
 import "./App.css";
-
-const queryClient = new QueryClient();
 
 function App() {
   return (
-    <>
-      <PassageProvider appId={import.meta.env.VITE_APP_PASSAGE_APP_ID}>
-        <QueryClientProvider client={queryClient}>
-          <div>
-            <div className={styles.mainContainer}>
-              <Routes>
-                <Route path="/" element={<Auth />}></Route>
-                <Route path="/auth" element={<Auth />}></Route>
-                <Route path="/welcome" element={<Dashboard />}></Route>
-                <Route path="/profile" element={<Profile />}></Route>
-              </Routes>
-            </div>
-          </div>
-        </QueryClientProvider>
-      </PassageProvider>
-    </>
+    <PassageProvider appId={import.meta.env.VITE_APP_PASSAGE_APP_ID}>
+      <Routes>
+        <Route path="/" element={<SplashPage />}></Route>
+        <Route path="/auth" element={<Auth />}></Route>
+        <Route path="/welcome" element={<Dashboard />}></Route>
+        <Route path="/spotify-auth" element={<SpotifyAuth />}></Route>
+        <Route path="/playlists" element={<Playlists />}></Route>
+        <Route path="/timer" element={<Timer />}></Route>
+        <Route path="/profile" element={<Profile />}></Route>
+      </Routes>
+    </PassageProvider>
   );
 }
 
