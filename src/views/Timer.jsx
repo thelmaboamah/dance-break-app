@@ -3,7 +3,7 @@ import AuthRedirect from "../components/AuthRedirect";
 import AudioPlayer from "../components/AudioPlayer";
 
 export default function Timer() {
-  const date = new Date();
+  // const date = new Date();
   return (
     <PassageAuthGuard unAuthComp={<AuthRedirect />}>
       <AudioPlayer />

@@ -4,8 +4,6 @@ import Auth from "./views/Auth";
 import Profile from "./views/Profile";
 import SplashPage from "./views/SplashPage";
 import Timer from "./views/Timer";
-import Playlists from "./views/Playlists";
-import SpotifyAuth from "./views/SpotifyAuth";
 import Dashboard from "./views/Dashboard";
 import Welcome from "./views/Welcome";
 
