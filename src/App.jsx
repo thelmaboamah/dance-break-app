@@ -7,6 +7,7 @@ import Timer from "./views/Timer";
 import Playlists from "./views/Playlists";
 import SpotifyAuth from "./views/SpotifyAuth";
 import Dashboard from "./views/Dashboard";
+import Welcome from "./views/Welcome";
 
 function App() {
   return (
@@ -14,9 +15,8 @@ function App() {
       <Routes>
         <Route path="/" element={<SplashPage />}></Route>
         <Route path="/auth" element={<Auth />}></Route>
-        <Route path="/welcome" element={<Dashboard />}></Route>
-        <Route path="/spotify-auth" element={<SpotifyAuth />}></Route>
-        <Route path="/playlists" element={<Playlists />}></Route>
+        <Route path="/welcome" element={<Welcome />}></Route>
+        <Route path="/dashboard" element={<Dashboard />}></Route>
         <Route path="/timer" element={<Timer />}></Route>
         <Route path="/profile" element={<Profile />}></Route>
       </Routes>
