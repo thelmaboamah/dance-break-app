@@ -44,7 +44,8 @@
   font-size: theme(fontSize.button);
   border-radius: 10px;
   text-align: center;
-  width: theme(spacing.button-w);
+  min-width: theme(spacing.button-w);
+  max-width: theme(spacing.button-w);
   min-height: theme(spacing.button-h);
   display: flex;
   justify-content: center;
