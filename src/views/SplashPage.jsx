@@ -36,7 +36,7 @@ export default function SplashPage() {
       <main className="w-full bg-yellowBg h-screen flex">
         <section className="w-4/5 desktop:w-1/2 m-auto">
           <img
-            src="public/icons/dance_break_logo.svg"
+            src="/icons/dance_break_logo.svg"
             alt="Dance Break Logo"
             className="w-logo-lg m-auto pb-32"
           ></img>
@@ -66,7 +66,7 @@ export default function SplashPage() {
             >
               <img
                 className="w-[25px] text-blueText pr-8"
-                src="public/icons/download.svg"
+                src="/icons/download.svg"
                 alt="Download icon"
               ></img>
               <span>Download App</span>
