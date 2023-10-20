@@ -11,6 +11,8 @@
   max-width: 100%;
   height: 100vh;
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .primary-button {
@@ -19,8 +21,8 @@
   font-size: theme(fontSize.button);
   border-radius: 10px;
   text-align: center;
-  width: 238px;
-  min-height: 43px;
+  width: theme(spacing.button-w);
+  min-height: theme(spacing.button-h);
 }
 
 .secondary-button {
@@ -31,7 +33,7 @@
   font-size: theme(fontSize.button);
   border-radius: 10px;
   text-align: center;
-  width: 238px;
+  width: theme(spacing.button-w);
   min-height: 43px;
 }
 
@@ -42,9 +44,20 @@
   font-size: theme(fontSize.button);
   border-radius: 10px;
   text-align: center;
-  width: 238px;
-  min-height: 43px;
+  width: theme(spacing.button-w);
+  min-height: theme(spacing.button-h);
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+passage-auth {
+--passage-primary-button-background-color: theme(colors.primary);
+--passage-primary-button-text-color: #fff;
+--passage-button-font-size: theme(fontSize.button);
+--passage-button-width: theme(spacing.button-w);
+--passage-header-font-size: theme(fontSize.h3);
+--passage-header-font-family: theme(fontFamily.dmSans);
+--passage-body-font-family: theme(fontFamily.dmSans);
+--passage-container-padding: 0px 24px;
 }
