@@ -9,7 +9,7 @@ export default function Auth() {
     <>
       <div className="desktop:flex-1">
         <img
-          className="w-full desktop:block hidden h-screen object-cover bg-yellowBg opacity-[.3]"
+          className="w-full desktop:block hidden h-screen object-cover"
           src="public/images/girl-dancing.jpg"
           alt="Girl dancing in front of a yellow background"
         ></img>
