@@ -61,3 +61,8 @@ passage-auth {
 --passage-body-font-family: theme(fontFamily.dmSans);
 --passage-container-padding: 0px 24px;
 }
+@media (display-mode: standalone) {
+  #install {
+    display: none;
+  }
+}
