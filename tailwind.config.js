@@ -79,10 +79,13 @@ export default {
     },
     spacing: {
       8: "8px",
+      12: "12px",
       24: "24px",
       32: "32px",
       "logo-lg": "124px", //large logo size
       "logo-sm": "40px", //small logo size for nav
+      "button-w": "238px", // width of button
+      "button-h": "43px", // height of button
     },
     extend: {},
   },
