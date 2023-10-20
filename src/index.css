@@ -52,14 +52,14 @@
 }
 
 passage-auth {
---passage-primary-button-background-color: theme(colors.primary);
---passage-primary-button-text-color: #fff;
---passage-button-font-size: theme(fontSize.button);
---passage-button-width: theme(spacing.button-w);
---passage-header-font-size: theme(fontSize.h3);
---passage-header-font-family: theme(fontFamily.dmSans);
---passage-body-font-family: theme(fontFamily.dmSans);
---passage-container-padding: 0px 24px;
+  --passage-primary-button-background-color: theme(colors.primary);
+  --passage-primary-button-text-color: #fff;
+  --passage-button-font-size: theme(fontSize.button);
+  --passage-button-width: theme(spacing.button-w);
+  --passage-header-font-size: theme(fontSize.h3);
+  --passage-header-font-family: theme(fontFamily.dmSans);
+  --passage-body-font-family: theme(fontFamily.dmSans);
+  --passage-container-padding: 0px 24px;
 }
 @media (display-mode: standalone) {
   #install {

@@ -85,7 +85,7 @@ export default {
       "logo-lg": "124px", //large logo size
       "logo-sm": "40px", //small logo size for nav
       "button-w": "238px", // width of button
-      "button-h": "43px" // height of button
+      "button-h": "43px", // height of button
     },
     extend: {},
   },
