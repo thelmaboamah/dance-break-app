@@ -12,6 +12,7 @@ export default {
       blueText: "#00526C", // for download button text
       purpleText: "#800080", // for secondary button text
       yellowBg: "#FFFCED", // for break timer and splash screen
+      lightGray: "#818181", // for audio player text
     },
     fontFamily: {
       dmSans: ["DM Sans", "sans-serif"],
@@ -24,6 +25,7 @@ export default {
           fontWeight: "400",
         },
       ],
+      small: ["16px", { lineHeight: "1.2em", fontWeight: "400" }],
       button: [
         "16px",
         {
@@ -77,17 +79,18 @@ export default {
         },
       ],
     },
-    spacing: {
-      8: "8px",
-      12: "12px",
-      24: "24px",
-      32: "32px",
-      "logo-lg": "124px", //large logo size
-      "logo-sm": "40px", //small logo size for nav
-      "button-w": "238px", // width of button
-      "button-h": "43px", // height of button
+    extend: {
+      spacing: {
+        8: "8px",
+        12: "12px",
+        24: "24px",
+        32: "32px",
+        "logo-lg": "124px", //large logo size
+        "logo-sm": "40px", //small logo size for nav
+        "button-w": "238px", // width of button
+        "button-h": "43px", // height of button
+      },
     },
-    extend: {},
   },
   plugins: [],
 };
