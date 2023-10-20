@@ -48,3 +48,9 @@
   justify-content: center;
   align-items: center;
 }
+
+@media (display-mode: standalone) {
+  #install {
+    display: none;
+  }
+}

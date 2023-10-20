@@ -7,7 +7,6 @@ import Timer from "./views/Timer";
 import Playlists from "./views/Playlists";
 import SpotifyAuth from "./views/SpotifyAuth";
 import Dashboard from "./views/Dashboard";
-import "./App.css";
 
 function App() {
   return (

@@ -1,13 +1,42 @@
 import { PassageUnAuthGuard } from "@passageidentity/passage-react";
 import { Link } from "react-router-dom";
 import Welcome from "./Welcome";
+import { useEffect, useRef } from "react";
 export default function SplashPage() {
+  const bipEvent = useRef(null);
+
+  function installListener(event) {
+    event.preventDefault();
+    console.log("Inside install listener");
+    bipEvent.current = event;
+  }
+
+  function handleInstallClick() {
+    if (bipEvent.current) {
+      bipEvent.current.prompt();
+    } else {
+      // incompatible browser, your PWA is not passing the criteria, the user has already installed the PWA
+      //TODO: show the user information on how to install the app
+      alert(
+        "To install the app look for Add to Homescreen or Install in your browser's menu",
+      );
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener("beforeinstallprompt", installListener);
+
+    return () => {
+      window.removeEventListener("beforeinstallprompt", installListener);
+    };
+  }, []);
+
   return (
     <PassageUnAuthGuard authComp={<Welcome />}>
       <main className="w-full bg-yellowBg h-screen flex">
         <section className="w-4/5 desktop:w-1/2 m-auto">
           <img
-            src="public/icons/dance_break_logo.svg"
+            src="/icons/dance_break_logo.svg"
             alt="Dance Break Logo"
             className="w-logo-lg m-auto pb-32"
           ></img>
@@ -30,10 +59,14 @@ export default function SplashPage() {
               </button>
             </Link>
 
-            <button className="download-button flex-1">
+            <button
+              id="install"
+              className="download-button flex-1"
+              onClick={handleInstallClick}
+            >
               <img
                 className="w-[25px] text-blueText pr-8"
-                src="public/icons/download.svg"
+                src="/icons/download.svg"
                 alt="Download icon"
               ></img>
               <span>Download App</span>
