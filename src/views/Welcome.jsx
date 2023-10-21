@@ -1,39 +1,55 @@
-import { Link } from "react-router-dom";
+import styles from "../styles/Dashboard.module.css";
 import { PassageAuthGuard } from "@passageidentity/passage-react";
 import { usePassageUserInfo } from "../hooks";
-
-import LogoutButton from "../components/LogoutButton";
-import styles from "../styles/Dashboard.module.css";
+import { loginUser } from "../utils/queries";
+import { createClient } from "@supabase/supabase-js";
 import AuthRedirect from "../components/AuthRedirect";
+import LogoutButton from "../components/LogoutButton";
+import { useState, useEffect, useMemo, createContext } from "react";
+import { Link } from "react-router-dom";
+import Timer from "./Timer";
 
-const clientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
+export const SupabaseContext = createContext(null)
 
 function Welcome() {
+
   const { userInfo, loading } = usePassageUserInfo();
+  const [isLogged, setIsLogged] = useState(false);
+  const [isMusicBreak, setIsMusicBreak] = useState(true);
+  const [isWorkTimer, setWorkTimer] = useState(true);
 
-  async function handleSpotifyAuthorization() {
-    const verifier = generateCodeVerifier(128);
-    const challenge = await generateCodeChallenge(verifier);
+  const supaClient = useMemo(() => createClient(
+    import.meta.env.VITE_PUBLIC_SUPABASE_URL,
+    import.meta.env.VITE_PUBLIC_SUPABASE_ANON_KEY,
+  ), []
+  );
 
-    localStorage.setItem("verifier", verifier);
+  useEffect(() => {
+    const goToLogin = async (userInfo, supaClient) => {
+      console.log("passage sent us ", userInfo)
+      setIsLogged(true);
+      
+      const data = await loginUser(userInfo, supaClient);
+      console.log("client received all this: ", data);
+      sessionStorage.setItem("supa_token", data?.token);
+    };
+    const tokenInSession = sessionStorage.getItem("supa_token");
 
-    const params = new URLSearchParams();
-    params.append("client_id", clientId);
-    params.append("response_type", "code");
-    params.append("redirect_uri", "http://localhost:5173/spotify-auth");
-    params.append(
-      "scope",
-      "user-read-private user-read-email playlist-read-private",
-    );
-    params.append("code_challenge_method", "S256");
-    params.append("code_challenge", challenge);
+    if (
+      !isLogged &&
+      userInfo &&
+      supaClient &&
+      //TODO: test again for undefined - seems it doesn't work
+      //add logic how to refresh token?
+      (tokenInSession === undefined || tokenInSession === null)
+    ) {
+      goToLogin(userInfo, supaClient);
+    }
+  }, [userInfo, supaClient, isLogged]);
 
-    document.location = `https://accounts.spotify.com/authorize?${params.toString()}`;
-  }
-
-  // useEffect(() => {
-  //   handleSpotifyAuthorization();
-  // }, []);
+  const toggleBreakType = () => {
+    setIsMusicBreak(!isMusicBreak);
+  };
 
   if (loading) {
     return (
@@ -45,49 +61,48 @@ function Welcome() {
 
   return (
     <PassageAuthGuard unAuthComp={<AuthRedirect />}>
-      <main>
-        <LogoutButton />
-        <h1 className="font-dmSans text-h1-regular">
-          Hi, {userInfo?.user_metadata.first_name}
-        </h1>
-        <p>
-          Get started by signing into Spotify. If you only want to use the
-          timer, click “Skip this step”.
-        </p>
-        <button onClick={handleSpotifyAuthorization}>Connect to Spotify</button>
-        <Link to="/timer" state={{ mode: "quiet" }}>
-          <p>Skip this step</p>
-        </Link>
-      </main>
+      <SupabaseContext.Provider value={supaClient}>
+      <>
+        <div className="desktop:flex-1">
+          <img
+            className="w-full desktop:block hidden h-screen object-cover"
+            src="public/images/girl-dancing.jpg"
+            alt="Girl dancing in front of a yellow background"
+          ></img>
+        </div>
+        <section className="desktop:flex-1 px-64">
+          <LogoutButton />
+          {/* leaving logout here since we dont have menu yet*/}
+          <h1 className="font-dmSans text-h1-bold pb-32">
+            Hi, {userInfo?.user_metadata.first_name}
+          </h1>
+          <p className="pb-32">
+            Get started using Dance Break by clicking{" "}
+            <span className="italic">Go to Timer</span> below.
+          </p>
+          <section className="flex justify-center">
+            {/* <Link
+              to="/timer"
+              className="primary-button flex justify-center"
+            >
+              <button>Go to Timer</button>
+            </Link> */}
+            <button className="breakType" onClick={toggleBreakType}>
+              {isMusicBreak ? "MUSIC" : "QUIET"}
+            </button>
+            {supaClient && (isWorkTimer ?
+             <Timer supabaseClient={supaClient} isMusicBreak={isMusicBreak} duration={10} setWorkTimer={setWorkTimer} isWorkTimer={isWorkTimer}/> 
+             :
+             <Timer supabaseClient={supaClient} isMusicBreak={isMusicBreak} duration={5} setWorkTimer={setWorkTimer} isWorkTimer={isWorkTimer}/> 
+             )
+            }
+            
+          </section>
+        </section>
+      </>
+      </SupabaseContext.Provider>
     </PassageAuthGuard>
   );
-}
-
-function generateCodeVerifier(length) {
-  let text = "";
-  let possible =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-  for (let i = 0; i < length; i++) {
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
-  }
-  return text;
-}
-
-async function generateCodeChallenge(codeVerifier) {
-  function base64encode(string) {
-    return window
-      .btoa(String.fromCharCode.apply(null, new Uint8Array(string)))
-      .replace(/\+/g, "-")
-      .replace(/\//g, "_")
-      .replace(/=+$/, "");
-  }
-
-  const encoder = new TextEncoder();
-  const data = encoder.encode(codeVerifier);
-  const digest = await window.crypto.subtle.digest("SHA-256", data);
-
-  return base64encode(digest);
 }
 
 export default Welcome;
