@@ -19,7 +19,7 @@ export default function Header() {
   return (
 
     //the whole header
-    <div className="flex justify-between items-center w-full px-8 py-4 z-10">
+    <div className="flex justify-between items-center w-full px-8 py-4 z-10 bg-white">
 
       {/* logo and name */}
       <div className="flex flex-row w-full items-center">
@@ -28,16 +28,10 @@ export default function Header() {
         </div>
         <h2>Dance Break</h2>
       </div>
-
-        {/* hamburger */}
-      <div className="w-5 h-5">
-        
-        {/* {!isModalOpen && toggleModal()} */}
-
-        <img src={icon} alt="BarsSolidorXSolid" onClick={() => setModalOpen(!isModalOpen)} />
+      <div>
+        <img src={icon} className="w-5 h-5 z-50 absolute top-12 right-12" alt="BarsSolidorXSolid" onClick={() => setModalOpen(!isModalOpen)} />
         {isModalOpen && <Modal/>}
-     </div>
-
+        </div>
      </div>
 );
       }

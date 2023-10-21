@@ -3,21 +3,23 @@ import { PassageAuthGuard } from "@passageidentity/passage-react";
 import { usePassageUserInfo } from "../hooks";
 
 import LogoutButton from "../components/LogoutButton";
-import styles from "../styles/Dashboard.module.css";
+import dashStyles from "../styles/Dashboard.module.css";
 import AuthRedirect from "../components/AuthRedirect";
+import centerStyles from "../styles/Center.module.css";
 
 function Welcome() {
   const { userInfo, loading } = usePassageUserInfo();
 
   if (loading) {
     return (
-      <div className={styles.dashboard}>
-        <div className={styles.title}>Loading...</div>
+      <div className={dashStyles.dashboard}>
+        <div className={dashStyles.title}>Loading...</div>
       </div>
     );
   }
 
   return (
+    <div className={centerStyles.root}>
     <PassageAuthGuard unAuthComp={<AuthRedirect />}>
       <>
         <div className="desktop:flex-1">
@@ -49,6 +51,7 @@ function Welcome() {
         </section>
       </>
     </PassageAuthGuard>
+    </div>
   );
 }
 

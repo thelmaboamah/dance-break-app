@@ -14,7 +14,7 @@ export default function WorkTimer() {
         </div>
         {/* <div className="flex-grow flex flex-col justify-center items-center"> */}
 
-        <div className="        flex-grow flex items-center justify-center">
+        <div className="flex-grow flex items-center justify-center">
           <CenterTimer />
         </div>
       </div>

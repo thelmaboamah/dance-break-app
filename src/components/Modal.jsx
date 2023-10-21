@@ -1,9 +1,9 @@
-// import XSolid from "../../public/icons/x-solid.svg";
+import Chevron from "../../public/icons/chevron-right-solid.svg";
 
 export default function Modal() {
   return (
     // <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50 h-screen ">
-    <div className="   fixed right-0 top-0 h-screen w-1/4 z-50 bg-white">
+    <div className="bg-white fixed right-0 top-0 h-screen desktop:w-1/4 w-[238px]">
       <div className="bg-white rounded-lg shadow-lg w-96 h-screen">
         <div className="p-6">
           {/* closign icon */}
@@ -15,19 +15,15 @@ export default function Modal() {
           {/* 5 rows */}
           <ul className="space-y-5">
             <li>
-              <button className="hover:underline focus:outline-none">
-                Update Durations
+              <button className="w-3/4 flex justify-between items-center hover:underline focus:outline-none">
+                <div>Update Durations</div>
+                <img className="w-3 h-3" src={Chevron} alt="chevron pointing right"></img>
               </button>
+              
             </li>
             <li>
               <button className="hover:underline focus:outline-none">
                 Disable Music
-                {/* <label className="relative inline-flex items-center cursor-pointer">
-  <input type="checkbox" value="" className="sr-only peer">
-  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-  <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Toggle me</span>
-  </input>
-</label> */}
               </button>
             </li>
             <li>
@@ -35,7 +31,7 @@ export default function Modal() {
                 Download the app
               </button>
             </li>
-            <li><div className="border-t-grey border-t-1 width-2/4"></div></li>
+            <li><div className="bg-grey border-t-1 desktop:w-3/4 w-[189px] h-[1px]"></div></li>
             <li>
               <button className="hover:underline focus:outline-none">
                 Log out
