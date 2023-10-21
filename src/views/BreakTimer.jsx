@@ -12,7 +12,7 @@ export default function BreakTimer() {
           <Header />
         </div>
 
-        <div className="        flex-grow flex items-center justify-center">
+        <div className="flex-col gap-32 flex-grow flex items-center justify-center">
           <BreakCenterTimer />
           <AudioPlayer />
         </div>
