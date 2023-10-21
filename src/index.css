@@ -11,6 +11,8 @@
   max-width: 100%;
   height: 100vh;
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .primary-button {
@@ -19,8 +21,8 @@
   font-size: theme(fontSize.button);
   border-radius: 10px;
   text-align: center;
-  width: 238px;
-  min-height: 43px;
+  width: theme(spacing.button-w);
+  min-height: theme(spacing.button-h);
 }
 
 .secondary-button {
@@ -31,7 +33,7 @@
   font-size: theme(fontSize.button);
   border-radius: 10px;
   text-align: center;
-  width: 238px;
+  width: theme(spacing.button-w);
   min-height: 43px;
 }
 
@@ -42,9 +44,82 @@
   font-size: theme(fontSize.button);
   border-radius: 10px;
   text-align: center;
-  width: 238px;
-  min-height: 43px;
+  min-width: theme(spacing.button-w);
+  max-width: theme(spacing.button-w);
+  min-height: theme(spacing.button-h);
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+passage-auth {
+  --passage-primary-button-background-color: theme(colors.primary);
+  --passage-primary-button-text-color: #fff;
+  --passage-button-font-size: theme(fontSize.button);
+  --passage-button-width: theme(spacing.button-w);
+  --passage-header-font-size: theme(fontSize.h3);
+  --passage-header-font-family: theme(fontFamily.dmSans);
+  --passage-body-font-family: theme(fontFamily.dmSans);
+  --passage-container-padding: 0px 24px;
+}
+
+.audio-player {
+  width: 360px;
+  height: auto;
+}
+.rhap_container {
+  box-shadow: none;
+  background-color: transparent;
+  padding: 0;
+}
+
+.rhap_container * {
+  color: #000;
+}
+
+.rhap_progress-section {
+  width: 100%;
+}
+
+.rhap_progress-container {
+  margin-left: 0;
+}
+
+.rhap_progress-bar {
+  background-color: #000;
+  margin: 0;
+  height: 8px;
+  border-radius: 8px;
+}
+
+.rhap_progress-indicator {
+  background-color: theme(colors.primary);
+  width: 15px;
+  height: 15px;
+  top: -3px;
+  margin: -1px;
+}
+
+.rhap_progress-filled {
+  background-color: theme(colors.primary);
+  border-radius: 8px;
+}
+
+.rhap_time {
+  min-width: 43px;
+}
+
+.rhap_play-pause-button {
+  font-size: 35px;
+}
+
+.rhap_additional-controls,
+.rhap_volume-bar-area {
+  display: none;
+}
+
+@media (display-mode: standalone) {
+  #install {
+    display: none;
+  }
 }

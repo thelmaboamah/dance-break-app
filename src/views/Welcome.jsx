@@ -11,7 +11,7 @@ import Timer from "./Timer";
 
 export const SupabaseContext = createContext(null)
 
-function Welcome() {
+export function Welcome() {
 
   const { userInfo, loading } = usePassageUserInfo();
   const [isLogged, setIsLogged] = useState(false);
@@ -54,7 +54,7 @@ function Welcome() {
   if (loading) {
     return (
       <div className={styles.dashboard}>
-        <div className={styles.title}>Loading</div>
+        <div className={styles.title}>Loading...</div>
       </div>
     );
   }
@@ -104,5 +104,3 @@ function Welcome() {
     </PassageAuthGuard>
   );
 }
-
-export default Welcome;
