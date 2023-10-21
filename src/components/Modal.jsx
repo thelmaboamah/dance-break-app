@@ -51,9 +51,12 @@ export default function Modal() {
             <li>
               <button className="desktop:w-3/4 w-[189px] flex justify-between items-center hover:underline focus:outline-none">
                 <div>Update Durations</div>
-                <img className="w-3 h-3" src={Chevron} alt="chevron pointing right"></img>
+                <img
+                  className="w-3 h-3"
+                  src={Chevron}
+                  alt="chevron pointing right"
+                ></img>
               </button>
-              
             </li>
             <li>
               <button className="hover:underline focus:outline-none">
@@ -61,13 +64,21 @@ export default function Modal() {
               </button>
             </li>
             <li>
-              <button onClick={handleInstallClick} className="hover:underline focus:outline-none">
+              <button
+                onClick={handleInstallClick}
+                className="hover:underline focus:outline-none"
+              >
                 Download the app
               </button>
             </li>
-            <li><div className="bg-grey border-t-1 desktop:w-3/4 w-[189px] h-[1px]"></div></li>
             <li>
-              <button onClick={signout} className="hover:underline focus:outline-none">
+              <div className="bg-grey border-t-1 desktop:w-3/4 w-[189px] h-[1px]"></div>
+            </li>
+            <li>
+              <button
+                onClick={signout}
+                className="hover:underline focus:outline-none"
+              >
                 Log out
               </button>
             </li>

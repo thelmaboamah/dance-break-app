@@ -3,10 +3,10 @@ import { PassageProvider } from "@passageidentity/passage-react";
 import Auth from "./views/Auth";
 import Profile from "./views/Profile";
 import SplashPage from "./views/SplashPage";
-import WorkTimer from "./views/WorkTimer"; 
+import WorkTimer from "./views/WorkTimer";
 import Dashboard from "./views/Dashboard";
 import Welcome from "./views/Welcome";
-import BreakTimer from "./views/BreakTimer"; 
+import BreakTimer from "./views/BreakTimer";
 
 function App() {
   return (

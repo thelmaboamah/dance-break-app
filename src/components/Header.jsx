@@ -1,26 +1,24 @@
 import BarsSolid from "../../public/icons/bars-solid.svg";
 import XSolid from "../../public/icons/x-solid.svg";
 import DanceBreakLogo from "../../public/icons/Dance_Break_Logo.svg";
-import { useState } from 'react';
+import { useState } from "react";
 import Modal from "../components/Modal";
 
 export default function Header() {
-    const [isModalOpen, setModalOpen] = useState(false);
-    
-    const icon = isModalOpen ?  XSolid : BarsSolid ;
+  const [isModalOpen, setModalOpen] = useState(false);
 
-    // const toggleModal = () => {
-    //     setModalOpen((isModalOpen) => !isModalOpen);
-    //     // {isModalOpen && <Modal/>}
+  const icon = isModalOpen ? XSolid : BarsSolid;
 
-    // }
-    console.log(isModalOpen);
+  // const toggleModal = () => {
+  //     setModalOpen((isModalOpen) => !isModalOpen);
+  //     // {isModalOpen && <Modal/>}
+
+  // }
+  console.log(isModalOpen);
 
   return (
-
     //the whole header
     <div className="flex justify-between items-center w-full px-8 py-4 z-10 bg-white">
-
       {/* logo and name */}
       <div className="flex flex-row w-full items-center">
         <div className="w-10 h-10">
@@ -29,10 +27,14 @@ export default function Header() {
         <h2>Dance Break</h2>
       </div>
       <div>
-        <img src={icon} className="w-5 h-5 z-50 absolute top-12 right-12" alt="BarsSolidorXSolid" onClick={() => setModalOpen(!isModalOpen)} />
-        {isModalOpen && <Modal/>}
-        </div>
-     </div>
-);
-      }
-
+        <img
+          src={icon}
+          className="w-5 h-5 z-50 absolute top-12 right-12"
+          alt="BarsSolidorXSolid"
+          onClick={() => setModalOpen(!isModalOpen)}
+        />
+        {isModalOpen && <Modal />}
+      </div>
+    </div>
+  );
+}
