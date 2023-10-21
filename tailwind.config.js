@@ -85,6 +85,7 @@ export default {
         12: "12px",
         24: "24px",
         32: "32px",
+        64: "64px",
         "logo-lg": "124px", //large logo size
         "logo-sm": "40px", //small logo size for nav
         "button-w": "238px", // width of button
