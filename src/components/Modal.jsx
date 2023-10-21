@@ -15,7 +15,7 @@ export default function Modal() {
           {/* 5 rows */}
           <ul className="space-y-5">
             <li>
-              <button className="w-3/4 flex justify-between items-center hover:underline focus:outline-none">
+              <button className="desktop:w-3/4 w-[189px] flex justify-between items-center hover:underline focus:outline-none">
                 <div>Update Durations</div>
                 <img className="w-3 h-3" src={Chevron} alt="chevron pointing right"></img>
               </button>
