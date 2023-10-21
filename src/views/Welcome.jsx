@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 import { PassageAuthGuard } from "@passageidentity/passage-react";
 import { usePassageUserInfo } from "../hooks";
-
-import LogoutButton from "../components/LogoutButton";
 import dashStyles from "../styles/Dashboard.module.css";
 import AuthRedirect from "../components/AuthRedirect";
 import centerStyles from "../styles/Center.module.css";
@@ -30,8 +28,6 @@ function Welcome() {
           ></img>
         </div>
         <section className="desktop:flex-1 px-64">
-          <LogoutButton />
-          {/* leaving logout here since we dont have menu yet*/}
           <h1 className="font-dmSans text-h1-bold pb-32">
             Hi, {userInfo?.user_metadata.first_name}
           </h1>
