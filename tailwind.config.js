@@ -13,6 +13,7 @@ export default {
       purpleText: "#800080", // for secondary button text
       yellowBg: "#FFFCED", // for break timer and splash screen
       lightGray: "#818181", // for audio player text
+      grey: "E8E8E8" // for horizontal line in menu
     },
     fontFamily: {
       dmSans: ["DM Sans", "sans-serif"],

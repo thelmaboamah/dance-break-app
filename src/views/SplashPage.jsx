@@ -2,6 +2,7 @@ import { PassageUnAuthGuard } from "@passageidentity/passage-react";
 import { Link } from "react-router-dom";
 import Welcome from "./Welcome";
 import { useEffect, useRef } from "react";
+import styles from "../styles/Center.module.css";
 export default function SplashPage() {
   const bipEvent = useRef(null);
 
@@ -32,6 +33,7 @@ export default function SplashPage() {
   }, []);
 
   return (
+    <div className={styles.root}>
     <PassageUnAuthGuard authComp={<Welcome />}>
       <main className="w-full bg-yellowBg h-screen flex">
         <section className="w-4/5 desktop:w-1/2 m-auto">
@@ -75,5 +77,6 @@ export default function SplashPage() {
         </section>
       </main>
     </PassageUnAuthGuard>
+    </div>
   );
 }
