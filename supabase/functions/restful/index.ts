@@ -37,7 +37,6 @@ async function getTasks(supabaseClient: SupabaseClient) {
 async function createTask(supabaseClient: SupabaseClient, task: Task) {
   console.log("received task ", task);
   const { error } = await supabaseClient.from("tasks").insert(task);
-  console.log("error with insert ", error);
   if (error) throw error;
 
   return new Response(JSON.stringify({ task }), {
@@ -48,8 +47,7 @@ async function createTask(supabaseClient: SupabaseClient, task: Task) {
 
 // Listening and serving begins
 Deno.serve(async (req) => {
-  const { url, method } = req;
-
+  const { method } = req;
   // This is needed if you're planning to invoke your function from a browser.
   if (method === "OPTIONS") {
     return new Response("ok", { headers: corsHeaders });
@@ -59,7 +57,7 @@ Deno.serve(async (req) => {
     // Create a Supabase client with the Auth context of the logged in user.
     const receivedAuth = req.headers.get("Authorization");
     const receivedToken = receivedAuth.split(" ")[1];
-    console.log(Deno.env.get("SUPA_JWT_SECRET"));
+
     const verification = verifyJWT(
       receivedToken,
       Deno.env.get("SUPA_JWT_SECRET"),
@@ -72,6 +70,7 @@ Deno.serve(async (req) => {
         status: 401,
       });
     }
+  
     const supabaseClient = createClient(
       Deno.env.get("SUPABASE_URL") ?? "",
       Deno.env.get("SUPABASE_ANON_KEY") ?? "",
@@ -82,7 +81,7 @@ Deno.serve(async (req) => {
       },
     );
 
-    let task = null;
+    let task = {};
     if (method === "POST") {
       const body = await req.json();
       task = body.task;

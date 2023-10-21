@@ -1,7 +1,7 @@
 # Testing sign-in
 curl -i --location --request POST 'https://ajbaqfkhsjbpkelepjpe.supabase.co/functions/v1/signin' \
    --header 'Content-Type: application/json' \ 
-   --data '{"userId": "UB8eNMRCeBLVmIrg59ekFnNx", "exp":"161569516"}'
+   --data '{"userId": "UB8eNMRCeBLVmIrg59ekFnNx" }'
 
 ### 
 # Testing task addition
@@ -12,11 +12,11 @@ curl -i --location --request POST 'https://ajbaqfkhsjbpkelepjpe.supabase.co/func
   --data '{"task": {
   "duration": "1500",
   "is_active": "true",
-  "start_time": "2023-09-18T14:15:04.486Z",
+  "start_time": "2023-10-18T14:15:04.486Z",
   "type": "work"}}'
 
 ###
-# Testing task receiving 
+# Testing task receiving
 # TODO: Add bearer token to test
 curl -i --location --request GET 'https://ajbaqfkhsjbpkelepjpe.supabase.co/functions/v1/restful' \
   --header 'Authorization: Bearer '
