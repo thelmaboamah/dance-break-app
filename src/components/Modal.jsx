@@ -41,15 +41,15 @@ export default function Modal() {
   }, []);
 
   return (
-    <div className="bg-white fixed right-0 top-0 h-screen desktop:w-1/4 w-[238px]">
-      <div className="bg-white rounded-lg shadow-lg w-96 h-screen">
+    <div className="bg-white fixed right-0 top-0 h-screen desktop:w-[530px] w-[238px]">
+      <div className="bg-white w-full rounded-lg shadow-lg w-96 h-screen">
         <div className="p-6">
           <div className="bg-gray-100 rounded-t-lg px-6 py-4"></div>
 
           {/* 5 rows */}
           <ul className="space-y-5">
             <li>
-              <button className="desktop:w-3/4 w-[189px] flex justify-between items-center hover:underline focus:outline-none">
+              <button className="desktop:w-3/4 w-[189px] desktop:w-[454px] flex justify-between items-center hover:underline focus:outline-none">
                 <div>Update Durations</div>
                 <img
                   className="w-3 h-3"
@@ -72,7 +72,7 @@ export default function Modal() {
               </button>
             </li>
             <li>
-              <div className="bg-grey border-t-1 desktop:w-3/4 w-[189px] h-[1px]"></div>
+              <div className="bg-grey border-t-1 w-[189px] desktop:w-[454px] h-[1px]"></div>
             </li>
             <li>
               <button

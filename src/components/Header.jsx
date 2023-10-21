@@ -20,16 +20,16 @@ export default function Header() {
     //the whole header
     <div className="flex justify-between items-center w-full px-8 py-4 z-10 bg-white">
       {/* logo and name */}
-      <div className="flex flex-row w-full items-center">
+      <div className="flex flex-row w-full gap-8 items-center">
         <div className="w-10 h-10">
           <img src={DanceBreakLogo} alt="Dance Break Logo" />
         </div>
-        <h2>Dance Break</h2>
+        <h2 className="hidden desktop:block">Dance Break</h2>
       </div>
       <div>
         <img
           src={icon}
-          className="w-5 h-5 z-50 absolute top-12 right-12"
+          className="w-5 h-5 z-50 absolute top-24 right-24"
           alt="BarsSolidorXSolid"
           onClick={() => setModalOpen(!isModalOpen)}
         />

@@ -2,7 +2,7 @@ import styles from "../styles/Center.module.css";
 
 export default function BreakCenterTimer() {
   return (
-    <div className={styles.centerTimer}>
+    <div className={styles.centerTimerWithAudioPlayer}>
       <div id="centered-text py-0">Time to Break</div>
 
       {/* placeholder for timer animation*/}
