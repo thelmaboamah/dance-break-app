@@ -54,7 +54,6 @@ export default function Modal() {
 
   useEffect(() => {
     const status = JSON.parse(localStorage.getItem("is_quiet_break"));
-    console.log("Modal.jsx line 57 ", status, typeof status);
     if (status == null) {
       localStorage.setItem("is_quiet_break", JSON.stringify(false));
     }

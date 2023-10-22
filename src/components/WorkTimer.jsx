@@ -17,7 +17,7 @@ export default function WorkTimer({
         <div className="flex-shrink-0">
           <Header />
         </div>
-        <div className="flex-grow flex flex-col items-center">
+        <div className="flex-grow flex flex-col items-center justify-center">
           <h1 className="text-h1-regular mb-6">Time to work. </h1>
           <Timer
             getRemainingTimePercentage={getRemainingTimePercentage}

@@ -20,7 +20,7 @@ export default function BreakTimer({
           <Header />
         </div>
 
-        <div className="flex-col gap-y-32 flex-grow flex items-center z-1">
+        <div className="flex-col gap-y-32 flex-grow flex items-center justify-center z-1">
           <h1 className="text-h1-regular">
             {isQuietBreak ? "Time to move!" : "Time to dance!"}
           </h1>
