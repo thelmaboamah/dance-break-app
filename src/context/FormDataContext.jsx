@@ -6,9 +6,9 @@ export const FormDataContext = createContext({});
 
 const FormDataProvider = ({ children }) => {
   const [formData, setFormData] = useState({
-    pomodoroTime: stages.pomodoroTime / 60,
-    shortBreakTime: stages.shortBreakTime / 60,
-    longBreakTime: stages.longBreakTime / 60,
+    workTime: stages.workTime / 60,
+    danceTime: stages.danceTime / 60,
+    quietTime: stages.quietTime / 60,
   });
   const value = {
     formData,

@@ -93,6 +93,9 @@ export default {
         "button-w": "238px", // width of button
         "button-h": "43px", // height of button
       },
+      zIndex: {
+        1: "1",
+      },
     },
   },
   plugins: [],

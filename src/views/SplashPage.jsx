@@ -1,6 +1,6 @@
 import { PassageUnAuthGuard } from "@passageidentity/passage-react";
 import { Link } from "react-router-dom";
-import Welcome from "./Welcome";
+import Home from "./Home";
 import { useEffect, useRef } from "react";
 import styles from "../styles/Center.module.css";
 export default function SplashPage() {
@@ -34,7 +34,7 @@ export default function SplashPage() {
 
   return (
     <div className={styles.root}>
-      <PassageUnAuthGuard authComp={<Welcome />}>
+      <PassageUnAuthGuard authComp={<Home />}>
         <main className="w-full bg-yellowBg h-screen flex">
           <section className="w-4/5 desktop:w-1/2 m-auto">
             <img

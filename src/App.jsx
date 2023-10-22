@@ -1,10 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import { PassageProvider } from "@passageidentity/passage-react";
 import Auth from "./views/Auth";
-import Profile from "./views/Profile";
 import SplashPage from "./views/SplashPage";
-import Welcome from "./views/Welcome";
-import ClockTimer from "./views/ClockTimer";
+import Home from "./views/Home";
+import TimerPage from "./views/TimerPage";
 
 function App() {
   return (
@@ -12,9 +11,8 @@ function App() {
       <Routes>
         <Route path="/" element={<SplashPage />}></Route>
         <Route path="/auth" element={<Auth />}></Route>
-        <Route path="/welcome" element={<Welcome />}></Route>
-        <Route path="/timer" element={<ClockTimer />}></Route>
-        <Route path="/profile" element={<Profile />}></Route>
+        <Route path="/home" element={<Home />}></Route>
+        <Route path="/timer" element={<TimerPage />}></Route>
       </Routes>
     </PassageProvider>
   );

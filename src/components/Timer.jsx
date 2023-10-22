@@ -16,13 +16,14 @@ export default function Timer({
       <div className="tw-timer">
         <div className="flex flex-col justify-center items-center font-semibold relative">
           <CircularProgressbarWithChildren
-            strokeWidth={2}
+            strokeWidth={4}
             trailColor="transparent"
             value={getRemainingTimePercentage()}
             styles={buildStyles({
-              trailColor: "transparent",
-              pathColor: "#f87070",
+              trailColor: "#818181",
+              pathColor: "#00C2FF",
             })}
+            counterClockwise={true}
           >
             <TimeDisplay
               pomodoro={pomodoro}
