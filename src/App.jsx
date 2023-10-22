@@ -3,8 +3,8 @@ import { PassageProvider } from "@passageidentity/passage-react";
 import Auth from "./views/Auth";
 import Profile from "./views/Profile";
 import SplashPage from "./views/SplashPage";
-import Timer from "./views/Timer";
 import Welcome from "./views/Welcome";
+import ClockTimer from "./views/ClockTimer";
 
 function App() {
   return (
@@ -13,8 +13,7 @@ function App() {
         <Route path="/" element={<SplashPage />}></Route>
         <Route path="/auth" element={<Auth />}></Route>
         <Route path="/welcome" element={<Welcome />}></Route>
-        <Route path="/dashboard" element={<Dashboard />}></Route>
-        <Route path="/timer" element={<Timer />}></Route>
+        <Route path="/timer" element={<ClockTimer />}></Route>
         <Route path="/profile" element={<Profile />}></Route>
       </Routes>
     </PassageProvider>

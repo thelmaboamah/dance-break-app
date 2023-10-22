@@ -6,12 +6,15 @@ import { createClient } from "@supabase/supabase-js";
 import AuthRedirect from "../components/AuthRedirect";
 import LogoutButton from "../components/LogoutButton";
 import { useState, useEffect, useMemo, createContext } from "react";
+// import Timer from "./Timer";
+import Clock from "../../todo/realtime/Clock";
+import Timer from "../../todo/realtime/Timer";
+import ClockTimer from "./ClockTimer";
 import { Link } from "react-router-dom";
-import Timer from "./Timer";
 
 export const SupabaseContext = createContext(null)
 
-export function Welcome() {
+export default function Welcome() {
 
   const { userInfo, loading } = usePassageUserInfo();
   const [isLogged, setIsLogged] = useState(false);
@@ -81,22 +84,13 @@ export function Welcome() {
             <span className="italic">Go to Timer</span> below.
           </p>
           <section className="flex justify-center">
-            {/* <Link
-              to="/timer"
-              className="primary-button flex justify-center"
-            >
-              <button>Go to Timer</button>
-            </Link> */}
-            <button className="breakType" onClick={toggleBreakType}>
-              {isMusicBreak ? "MUSIC" : "QUIET"}
-            </button>
-            {supaClient && (isWorkTimer ?
-             <Timer supabaseClient={supaClient} isMusicBreak={isMusicBreak} duration={10} setWorkTimer={setWorkTimer} isWorkTimer={isWorkTimer}/> 
-             :
-             <Timer supabaseClient={supaClient} isMusicBreak={isMusicBreak} duration={5} setWorkTimer={setWorkTimer} isWorkTimer={isWorkTimer}/> 
-             )
-            }
-            
+              <Link
+                to="/timer"
+                className="primary-button flex justify-center"
+                // state={{ mode: "quiet" }}
+              >
+                <button>Go to Timer</button>
+              </Link>
           </section>
         </section>
       </>

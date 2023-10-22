@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { createTaskInDb } from "../utils/queries";
+import { createTaskInDb } from "../../src/utils/queries";
 
 export const useClockTimer = (
   duration,
@@ -42,18 +42,6 @@ export const useClockTimer = (
           setTimer((timer) => timer - 1);
         }
       }, 1000);
-
-      // const timeDown = (value) => {
-      //   if (isTimerRunning) {
-      //     var t = Number(String(value)) - 1;
-      //     if (t < 0) {
-      //       t = 0;
-      //     }
-    
-      //     timerValue.current = t;
-      //     setTime(t);
-      //   }
-      // };
 
     } else {
       console.log("clear interval");

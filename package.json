@@ -15,6 +15,7 @@
     "@passageidentity/passage-react": "^0.5.0",
     "@supabase/supabase-js": "^2.38.1",
     "react": "^18.2.0",
+    "react-circular-progressbar": "^2.1.0",
     "react-dom": "^18.2.0",
     "react-h5-audio-player": "^3.9.0",
     "react-icons": "^4.11.0",
