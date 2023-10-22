@@ -61,7 +61,7 @@ export default function Modal() {
   }, []);
 
   return (
-    <div className="bg-white fixed right-0 top-0 h-screen desktop:w-[330px] w-[238px] z-1">
+    <div className="bg-white fixed right-0 top-0 h-screen desktop:w-[330px] w-[238px] z-20">
       <div className="bg-white w-full rounded-lg shadow-lg w-96 h-screen">
         <div className="p-6">
           <div className="bg-gray-100 rounded-t-lg px-6 py-4"></div>
