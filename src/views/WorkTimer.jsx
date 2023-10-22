@@ -1,7 +1,6 @@
 import { PassageAuthGuard } from "@passageidentity/passage-react";
 import AuthRedirect from "../components/AuthRedirect";
 import Header from "../components/Header";
-import CenterTimer from "../components/WorkCenterTimer";
 import Timer from "../components/Timer";
 
 export default function WorkTimer({
@@ -19,7 +18,6 @@ export default function WorkTimer({
           <Header />
         </div>
         {/* <div className="flex-grow flex flex-col justify-center items-center"> */}
-
         <div className="flex-grow flex items-center justify-center">
           {/* <CenterTimer /> */}
           <Timer

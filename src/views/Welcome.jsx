@@ -3,22 +3,14 @@ import { usePassageUserInfo } from "../hooks";
 import { loginUser } from "../utils/queries";
 import { createClient } from "@supabase/supabase-js";
 import AuthRedirect from "../components/AuthRedirect";
-import LogoutButton from "../components/LogoutButton";
-import { useState, useEffect, useMemo, createContext } from "react";
-// import Timer from "./Timer";
-import Clock from "../../todo/realtime/Clock";
-import Timer from "../../todo/realtime/Timer";
-import ClockTimer from "./ClockTimer";
+import { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import dashStyles from "../styles/Dashboard.module.css";
 import centerStyles from "../styles/Center.module.css";
 
 export default function Welcome() {
-
   const { userInfo, loading } = usePassageUserInfo();
   const [isLogged, setIsLogged] = useState(false);
-  const [isMusicBreak, setIsMusicBreak] = useState(true);
-  const [isWorkTimer, setWorkTimer] = useState(true);
 
   const supaClient = useMemo(() => createClient(
     import.meta.env.VITE_PUBLIC_SUPABASE_URL,
@@ -48,10 +40,6 @@ export default function Welcome() {
       goToLogin(userInfo, supaClient);
     }
   }, [userInfo, supaClient, isLogged]);
-
-  const toggleBreakType = () => {
-    setIsMusicBreak(!isMusicBreak);
-  };
 
   if (loading) {
     return (

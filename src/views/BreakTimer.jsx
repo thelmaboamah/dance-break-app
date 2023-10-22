@@ -2,7 +2,6 @@ import { PassageAuthGuard } from "@passageidentity/passage-react";
 import AuthRedirect from "../components/AuthRedirect";
 import AudioPlayer from "../components/AudioPlayer";
 import Header from "../components/Header";
-import BreakCenterTimer from "../components/BreakCenterTimer";
 import Timer from "../components/Timer";
 
 export default function BreakTimer({  

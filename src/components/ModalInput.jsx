@@ -1,5 +1,3 @@
-import React from "react";
-
 const ModalInput = ({ label, defaultValue, onChange, name }) => {
   return (
     <div className="form-group flex flex-col flex-auto">

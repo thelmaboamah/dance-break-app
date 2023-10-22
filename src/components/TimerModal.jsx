@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
-import { stages } from "../utils/constants";
+import { useContext, useEffect, useRef } from "react";
 import ModalInput from "./ModalInput";
 import { FormDataContext } from "../context/FormDataContext";
 
