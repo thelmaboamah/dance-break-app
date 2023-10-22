@@ -20,7 +20,7 @@ export default function BreakTimer({
           <Header />
         </div>
 
-        <div className="flex-col gap-y-32 flex-grow flex items-center">
+        <div className="flex-col gap-y-32 flex-grow flex items-center z-1">
           <h1 className="text-h1-regular">
             {isQuietBreak ? "Time to move!" : "Time to dance!"}
           </h1>
@@ -32,7 +32,12 @@ export default function BreakTimer({
           />
           {!isQuietBreak && <AudioPlayer />}
         </div>
-        <img id="Confetti" src={Confetti} alt="confetti" className="fixed bottom-0 left-0  w-full h-[670px] pointer-events-none"/>
+        <img
+          id="Confetti"
+          src={Confetti}
+          alt="confetti"
+          className="fixed bottom-0 left-0 object-cover w-full h-[670px] pointer-events-none opacity-[0.6]"
+        />
       </div>
     </PassageAuthGuard>
   );

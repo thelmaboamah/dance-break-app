@@ -49,11 +49,15 @@ export default function SplashPage() {
               Dance Break
             </h1>
             <p className="text-body pb-24">
-            We've all heard it: "Sitting is the new smoking."   
-            <br/><br/>
-            Dance Break Progressive Web App invites you to engage in brief, 5-minute activity sessions. Whether you opt for a calming stretch or an uplifting dance, the choice is yours.
-    <br/><br/>
-            So, are you ready to take a Dance Break? 🕺💃.
+              We&apos;ve all heard it: &quot;Sitting is the new smoking.&quot;
+              <br />
+              <br />
+              Dance Break invites you to engage in brief, 5-minute activity
+              sessions. Whether you opt for a calming stretch or an uplifting
+              dance, the choice is yours.
+              <br />
+              <br />
+              So, are you ready to take a Dance Break? 🕺💃.
             </p>
             <div className="flex gap-24 flex-col desktop:flex-row items-center">
               <Link to="/auth">

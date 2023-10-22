@@ -61,7 +61,7 @@ export default function Modal() {
   }, []);
 
   return (
-    <div className="bg-white fixed right-0 top-0 h-screen desktop:w-[530px] w-[238px] z-1">
+    <div className="bg-white fixed right-0 top-0 h-screen desktop:w-[330px] w-[238px] z-1">
       <div className="bg-white w-full rounded-lg shadow-lg w-96 h-screen">
         <div className="p-6">
           <div className="bg-gray-100 rounded-t-lg px-6 py-4"></div>
@@ -69,7 +69,7 @@ export default function Modal() {
           {/* 5 rows */}
           <ul className="space-y-5">
             <li>
-              <button className="desktop:w-3/4 w-[189px] desktop:w-[454px] flex justify-between items-center hover:underline focus:outline-none">
+              <button className="desktop:w-3/4 w-[189px] desktop:w-[262px] flex justify-between items-center hover:underline focus:outline-none pointer-events-auto">
                 <div>Update Durations</div>
                 <img
                   className="w-3 h-3"
@@ -79,10 +79,8 @@ export default function Modal() {
               </button>
             </li>
             <li>
-              <div className="w-[189px] desktop:w-[454px] flex justify-between items-center">
-                <span className="hover:underline focus:outline-none">
-                  Disable Music
-                </span>
+              <div className="w-[189px] desktop:w-[262px] flex justify-between items-center">
+                <span>Disable Music</span>
                 <Switch
                   isOn={isQuietBreak}
                   onColor="#00C2FF"
@@ -93,18 +91,18 @@ export default function Modal() {
             <li>
               <button
                 onClick={handleInstallClick}
-                className="hover:underline focus:outline-none"
+                className="hover:underline focus:outline-none pointer-events-auto"
               >
                 Download the app
               </button>
             </li>
             <li>
-              <div className="bg-grey border-t-1 w-[189px] desktop:w-[454px] h-[1px]"></div>
+              <div className="bg-grey border-t-1 w-[189px] desktop:w-[262px] h-[1px]"></div>
             </li>
             <li>
               <button
                 onClick={signout}
-                className="hover:underline focus:outline-none"
+                className="hover:underline focus:outline-none pointer-events-auto"
               >
                 Log out
               </button>

@@ -9,8 +9,6 @@ import {
 } from "react-icons/bs";
 
 export default function AudioPlayer() {
-  const [songIndex, setSongIndex] = useState(getRandomInt(5));
-
   const playlist = [
     {
       songName: "Love On Top",
@@ -43,6 +41,8 @@ export default function AudioPlayer() {
       src: "/audio/just-dance.mp3",
     },
   ];
+
+  const [songIndex, setSongIndex] = useState(getRandomInt(playlist.length));
 
   function getRandomInt(max) {
     return Math.floor(Math.random() * max);
@@ -79,7 +79,7 @@ export default function AudioPlayer() {
         ]}
         customAdditionalControls={[]}
         onEnded={() => {
-          setSongIndex(getRandomInt(5));
+          setSongIndex(getRandomInt(playlist.length));
         }}
       />
     </section>
