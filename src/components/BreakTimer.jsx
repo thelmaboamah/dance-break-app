@@ -3,6 +3,7 @@ import AuthRedirect from "./AuthRedirect";
 import AudioPlayer from "./AudioPlayer";
 import Header from "./Header";
 import Timer from "./Timer";
+import Confetti from "../../public/images/Confetti.png";
 
 export default function BreakTimer({
   getRemainingTimePercentage,
@@ -28,6 +29,7 @@ export default function BreakTimer({
           />
           {!isQuietBreak && <AudioPlayer />}
         </div>
+        <img id="Confetti" src={Confetti} alt="confetti" className="fixed bottom-0 left-0  w-full h-[670px] pointer-events-none"/>
       </div>
     </PassageAuthGuard>
   );
