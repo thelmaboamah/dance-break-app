@@ -19,7 +19,10 @@ export default function BreakTimer({
           <Header />
         </div>
 
-        <div className="flex-col gap-32 flex-grow flex items-center justify-center">
+        <div className="flex-col gap-y-32 flex-grow flex items-center">
+          <h1 className="text-h1-regular">
+            {isQuietBreak ? "Time to move!" : "Time to dance!"}
+          </h1>
           <Timer
             getRemainingTimePercentage={getRemainingTimePercentage}
             pomodoro={pomodoro}
