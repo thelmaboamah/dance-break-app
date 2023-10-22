@@ -5,6 +5,7 @@ import { FormDataContext } from "../context/FormDataContext";
 const TimerModal = ({ isSettingsOn, setIsSettingsOn, setPomodoro }) => {
   const { formData, setFormData } = useContext(FormDataContext);
   const modalRef = useRef();
+
   function handleSubmit(e) {
     e.preventDefault();
     setPomodoro((prevPomodoro) => ({
@@ -37,6 +38,7 @@ const TimerModal = ({ isSettingsOn, setIsSettingsOn, setPomodoro }) => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
   }, []);
+  
   return (
     <>
       {isSettingsOn && (
@@ -45,8 +47,8 @@ const TimerModal = ({ isSettingsOn, setIsSettingsOn, setPomodoro }) => {
           ref={modalRef}
         >
           <div className=" flex pb-6 border-b justify-between items-center">
-            <h2 className="font-bold text-xl">Settings</h2>
-            <button onClick={() => setIsSettingsOn(false)}>
+            <h2 className="font-bold text-xl">Update Durations</h2>
+            {/* <button onClick={() => setIsSettingsOn(false)}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -61,7 +63,7 @@ const TimerModal = ({ isSettingsOn, setIsSettingsOn, setPomodoro }) => {
                   d="M6 18L18 6M6 6l12 12"
                 />
               </svg>
-            </button>
+            </button> */}
           </div>
 
           <div>
@@ -71,21 +73,21 @@ const TimerModal = ({ isSettingsOn, setIsSettingsOn, setPomodoro }) => {
 
             <form className="inputs flex" onSubmit={handleSubmit}>
               <ModalInput
-                label={"pomodoro"}
+                label={"work timer"}
                 name={"pomodoroTime"}
                 defaultValue={formData.pomodoroTime}
                 setFormData={setFormData}
                 onChange={handleInputChange}
               />
               <ModalInput
-                label={"short break"}
+                label={"dance break"}
                 name={"shortBreakTime"}
                 defaultValue={formData.shortBreakTime}
                 setFormData={setFormData}
                 onChange={handleInputChange}
               />
               <ModalInput
-                label={"long break"}
+                label={"quiet break"}
                 name={"longBreakTime"}
                 defaultValue={formData.longBreakTime}
                 setFormData={setFormData}

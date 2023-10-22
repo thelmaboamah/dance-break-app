@@ -2,7 +2,7 @@ import Chevron from "../../public/icons/chevron-right-solid.svg";
 import { useEffect, useRef } from "react";
 import { usePassageLogout } from "../hooks";
 import { useNavigate } from "react-router-dom";
-export default function Modal() {
+export default function Modal({setIsSettingsOn}) {
   const { logout } = usePassageLogout();
 
   const navigate = useNavigate();
@@ -32,6 +32,11 @@ export default function Modal() {
     }
   }
 
+  
+  function handleSettingClick() {
+
+  }
+
   useEffect(() => {
     window.addEventListener("beforeinstallprompt", installListener);
 
@@ -49,7 +54,9 @@ export default function Modal() {
           {/* 5 rows */}
           <ul className="space-y-5">
             <li>
-              <button className="desktop:w-3/4 w-[189px] desktop:w-[454px] flex justify-between items-center hover:underline focus:outline-none">
+              <button className="desktop:w-3/4 w-[189px] desktop:w-[454px] flex justify-between items-center hover:underline focus:outline-none"
+              onClick={() => setIsSettingsOn(false)}
+              >
                 <div>Update Durations</div>
                 <img
                   className="w-3 h-3"
