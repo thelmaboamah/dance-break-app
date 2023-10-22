@@ -2,9 +2,14 @@ import { PassageAuthGuard } from "@passageidentity/passage-react";
 import AuthRedirect from "../components/AuthRedirect";
 import AudioPlayer from "../components/AudioPlayer";
 import Header from "../components/Header";
-import BreakCenterTimer from "../components/BreakCenterTimer";
+import Timer from "../components/Timer";
 
-export default function BreakTimer() {
+export default function BreakTimer({
+  getRemainingTimePercentage,
+  pomodoro,
+  selectedControl,
+  setPomodoro,
+}) {
   return (
     <PassageAuthGuard unAuthComp={<AuthRedirect />}>
       <div className="flex flex-col h-screen bg-yellowBg">
@@ -13,7 +18,13 @@ export default function BreakTimer() {
         </div>
 
         <div className="flex-col gap-32 flex-grow flex items-center justify-center">
-          <BreakCenterTimer />
+          {/* <BreakCenterTimer /> */}
+          <Timer
+            getRemainingTimePercentage={getRemainingTimePercentage}
+            pomodoro={pomodoro}
+            selectedControl={selectedControl}
+            setPomodoro={setPomodoro}
+          />
           <AudioPlayer />
         </div>
       </div>

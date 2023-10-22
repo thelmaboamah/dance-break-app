@@ -1,12 +1,48 @@
-import { Link } from "react-router-dom";
 import { PassageAuthGuard } from "@passageidentity/passage-react";
 import { usePassageUserInfo } from "../hooks";
-import dashStyles from "../styles/Dashboard.module.css";
+import { loginUser } from "../utils/queries";
+import { createClient } from "@supabase/supabase-js";
 import AuthRedirect from "../components/AuthRedirect";
+import { useState, useEffect, useMemo } from "react";
+import { Link } from "react-router-dom";
+import dashStyles from "../styles/Dashboard.module.css";
 import centerStyles from "../styles/Center.module.css";
 
-function Welcome() {
+export default function Welcome() {
   const { userInfo, loading } = usePassageUserInfo();
+  const [isLogged, setIsLogged] = useState(false);
+
+  const supaClient = useMemo(
+    () =>
+      createClient(
+        import.meta.env.VITE_PUBLIC_SUPABASE_URL,
+        import.meta.env.VITE_PUBLIC_SUPABASE_ANON_KEY,
+      ),
+    [],
+  );
+
+  useEffect(() => {
+    const goToLogin = async (userInfo, supaClient) => {
+      console.log("passage sent us ", userInfo);
+      setIsLogged(true);
+
+      const data = await loginUser(userInfo, supaClient);
+      console.log("client received all this: ", data);
+      sessionStorage.setItem("supa_token", data?.token);
+    };
+    const tokenInSession = sessionStorage.getItem("supa_token");
+
+    if (
+      !isLogged &&
+      userInfo &&
+      supaClient &&
+      //TODO: test again for undefined - seems it doesn't work
+      //add logic how to refresh token?
+      (tokenInSession === undefined || tokenInSession === null)
+    ) {
+      goToLogin(userInfo, supaClient);
+    }
+  }, [userInfo, supaClient, isLogged]);
 
   if (loading) {
     return (
@@ -39,7 +75,7 @@ function Welcome() {
               <Link
                 to="/timer"
                 className="primary-button flex justify-center"
-                state={{ mode: "quiet" }}
+                // state={{ mode: "quiet" }}
               >
                 <button>Go to Timer</button>
               </Link>
@@ -50,5 +86,3 @@ function Welcome() {
     </div>
   );
 }
-
-export default Welcome;

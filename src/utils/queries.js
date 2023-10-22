@@ -1,10 +1,10 @@
-const createTaskInDb = async (userId, title, supabase) => {
-  console.log("Create task with client ", supabase);
+export const createTaskInDb = async (task, supabase) => {
+  const token = sessionStorage.getItem("supa_token");
   const { data, error } = await supabase.functions.invoke("restful", {
-    // headers: {
-    //   mode: "no-cors",
-    // },
-    body: JSON.stringify({ userId, title }),
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ task }),
   });
   if (error) {
     console.log("Error on data fetch: ", error);
@@ -12,29 +12,13 @@ const createTaskInDb = async (userId, title, supabase) => {
   return data;
 };
 
-// const readTasksFromDb = async (userId, supabase) => {
-//   console.log("Create task with client ", supabase);
-//   const { data, error } = await supabase.functions.invoke("signin", {
-//     headers: {
-//       mode: "no-cors",
-//     },
-//     body: JSON.stringify({ userId }),
-//   });
-//   if (error) {
-//     console.log("Error on data fetch: ", error);
-//   }
-//   return data;
-// };
-
-const loginUser = async (userInfo, supabase) => {
-  console.log("Login started with client ", userInfo);
+export const loginUser = async (userInfo, supabase) => {
   const dataPayload = {
     userId: userInfo?.id,
     email: userInfo?.email,
     first_name: userInfo?.user_metadata.first_name,
     spotify_token: "",
   };
-  console.log("seding this login payload: ", dataPayload);
   const { data, error } = await supabase.functions.invoke("signin", {
     body: JSON.stringify(dataPayload),
   });
@@ -43,5 +27,3 @@ const loginUser = async (userInfo, supabase) => {
   }
   return data;
 };
-
-export { createTaskInDb, loginUser };
