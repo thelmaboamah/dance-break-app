@@ -73,7 +73,7 @@ export default {
           fontWeight: "700",
         },
       ],
-      "timer": [
+      timer: [
         "48px",
         {
           lineHeight: "1.2em",
