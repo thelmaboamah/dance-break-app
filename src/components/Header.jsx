@@ -9,13 +9,6 @@ export default function Header() {
 
   const icon = isModalOpen ? XSolid : BarsSolid;
 
-  // const toggleModal = () => {
-  //     setModalOpen((isModalOpen) => !isModalOpen);
-  //     // {isModalOpen && <Modal/>}
-
-  // }
-  console.log(isModalOpen);
-
   return (
     //the whole header
     <div className="flex justify-between items-center w-full px-8 py-4 z-10 bg-white">
