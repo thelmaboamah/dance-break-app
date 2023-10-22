@@ -38,7 +38,13 @@ const useTimer = () => {
               if (periodId.current % 8 === 0) {
                 return 2;
               } else {
-                return prevState >= controllers.length - 1 ? 0 : prevState === 0 ? prevState + 1 : prevState === 1 ? prevState - 1 : 0;
+                return prevState >= controllers.length - 1
+                  ? 0
+                  : prevState === 0
+                  ? prevState + 1
+                  : prevState === 1
+                  ? prevState - 1
+                  : 0;
               }
             });
 
@@ -51,7 +57,8 @@ const useTimer = () => {
           }
           return {
             ...prevPomodoro,
-            [controllers[selectedControl].value]: prevPomodoro[controllers[selectedControl].value] - 1,
+            [controllers[selectedControl].value]:
+              prevPomodoro[controllers[selectedControl].value] - 1,
           };
         });
       }, 1000);
@@ -59,9 +66,26 @@ const useTimer = () => {
     return () => {
       clearInterval(timer);
     };
-  }, [pomodoro.isPaused, selectedControl, setPomodoro, setSelectedControl, pomodoro.period]);
-  console.log("selected control is ", selectedControl, controllers[selectedControl])
-  return { pomodoro, setPomodoro, selectedControl, setSelectedControl, resetTimerValues, getRemainingTimePercentage };
+  }, [
+    pomodoro.isPaused,
+    selectedControl,
+    setPomodoro,
+    setSelectedControl,
+    pomodoro.period,
+  ]);
+  console.log(
+    "selected control is ",
+    selectedControl,
+    controllers[selectedControl],
+  );
+  return {
+    pomodoro,
+    setPomodoro,
+    selectedControl,
+    setSelectedControl,
+    resetTimerValues,
+    getRemainingTimePercentage,
+  };
 };
 
 export default useTimer;

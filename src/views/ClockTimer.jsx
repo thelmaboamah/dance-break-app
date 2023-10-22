@@ -9,11 +9,20 @@ import WorkTimer from "./WorkTimer";
 import BreakTimer from "./BreakTimer";
 
 const ClockTimer = () => {
-  const { pomodoro, selectedControl, setPomodoro, setSelectedControl, resetTimerValues, getRemainingTimePercentage } = useTimer();
+  const {
+    pomodoro,
+    selectedControl,
+    setPomodoro,
+    setSelectedControl,
+    resetTimerValues,
+    getRemainingTimePercentage,
+  } = useTimer();
   const { minutes, seconds } = useCalculateTime({ pomodoro, selectedControl });
   const [isSettingsOn, setIsSettingsOn] = useState(false);
 
-  document.title = `${controllers[selectedControl].label} - ${minutes < 9 ? "0" : ""}${minutes}:${seconds < 9 ? "0" : ""}${seconds}`;
+  document.title = `${controllers[selectedControl].label} - ${
+    minutes < 9 ? "0" : ""
+  }${minutes}:${seconds < 9 ? "0" : ""}${seconds}`;
 
   return (
     <main className="relative flex flex-col justify-center items-center">

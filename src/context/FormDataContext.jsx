@@ -14,7 +14,11 @@ const FormDataProvider = ({ children }) => {
     formData,
     setFormData,
   };
-  return <FormDataContext.Provider value={value}>{children}</FormDataContext.Provider>;
+  return (
+    <FormDataContext.Provider value={value}>
+      {children}
+    </FormDataContext.Provider>
+  );
 };
 
 export default FormDataProvider;

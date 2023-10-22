@@ -12,17 +12,20 @@ export default function Welcome() {
   const { userInfo, loading } = usePassageUserInfo();
   const [isLogged, setIsLogged] = useState(false);
 
-  const supaClient = useMemo(() => createClient(
-    import.meta.env.VITE_PUBLIC_SUPABASE_URL,
-    import.meta.env.VITE_PUBLIC_SUPABASE_ANON_KEY,
-  ), []
+  const supaClient = useMemo(
+    () =>
+      createClient(
+        import.meta.env.VITE_PUBLIC_SUPABASE_URL,
+        import.meta.env.VITE_PUBLIC_SUPABASE_ANON_KEY,
+      ),
+    [],
   );
 
   useEffect(() => {
     const goToLogin = async (userInfo, supaClient) => {
-      console.log("passage sent us ", userInfo)
+      console.log("passage sent us ", userInfo);
       setIsLogged(true);
-      
+
       const data = await loginUser(userInfo, supaClient);
       console.log("client received all this: ", data);
       sessionStorage.setItem("supa_token", data?.token);
@@ -52,7 +55,7 @@ export default function Welcome() {
   return (
     <div className={centerStyles.root}>
       <PassageAuthGuard unAuthComp={<AuthRedirect />}>
-      <>
+        <>
           <div className="desktop:flex-1">
             <img
               className="w-full desktop:block hidden h-screen object-cover"
@@ -69,17 +72,17 @@ export default function Welcome() {
               <span className="italic">Go to Timer</span> below.
             </p>
             <section className="flex justify-center">
-                <Link
-                  to="/timer"
-                  className="primary-button flex justify-center"
-                  // state={{ mode: "quiet" }}
-                >
-                  <button>Go to Timer</button>
-                </Link>
+              <Link
+                to="/timer"
+                className="primary-button flex justify-center"
+                // state={{ mode: "quiet" }}
+              >
+                <button>Go to Timer</button>
+              </Link>
             </section>
           </section>
         </>
-    </PassageAuthGuard>
+      </PassageAuthGuard>
     </div>
   );
 }

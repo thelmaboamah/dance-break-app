@@ -42,7 +42,8 @@ const TimerModal = ({ isSettingsOn, setIsSettingsOn, setPomodoro }) => {
       {isSettingsOn && (
         <div
           className={`block modal absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white w-[20rem] md:w-[28rem] rounded-2xl text-pmd-blue-800 px-6 pt-6 pb-12`}
-          ref={modalRef}>
+          ref={modalRef}
+        >
           <div className=" flex pb-6 border-b justify-between items-center">
             <h2 className="font-bold text-xl">Settings</h2>
             <button onClick={() => setIsSettingsOn(false)}>
@@ -52,7 +53,8 @@ const TimerModal = ({ isSettingsOn, setIsSettingsOn, setPomodoro }) => {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-6 h-6">
+                className="w-6 h-6"
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -63,11 +65,11 @@ const TimerModal = ({ isSettingsOn, setIsSettingsOn, setPomodoro }) => {
           </div>
 
           <div>
-            <h3 className="uppercase tracking-wider font-bold text-sm py-3">Time (minutes)</h3>
+            <h3 className="uppercase tracking-wider font-bold text-sm py-3">
+              Time (minutes)
+            </h3>
 
-            <form
-              className="inputs flex"
-              onSubmit={handleSubmit}>
+            <form className="inputs flex" onSubmit={handleSubmit}>
               <ModalInput
                 label={"pomodoro"}
                 name={"pomodoroTime"}
@@ -91,7 +93,8 @@ const TimerModal = ({ isSettingsOn, setIsSettingsOn, setPomodoro }) => {
               />
               <button
                 type="submit"
-                className="absolute -bottom-5 bg-pmd-red-700 text-white font-semibold text-sm rounded-full px-8 py-3 left-1/2 -translate-x-1/2 hover:bg-pmd-red-600 transition-all cursor-pointer">
+                className="absolute -bottom-5 bg-pmd-red-700 text-white font-semibold text-sm rounded-full px-8 py-3 left-1/2 -translate-x-1/2 hover:bg-pmd-red-600 transition-all cursor-pointer"
+              >
                 Apply
               </button>
             </form>

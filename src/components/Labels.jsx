@@ -1,6 +1,11 @@
 import { controllers } from "../utils/constants";
 
-const Labels = ({ selectedControl, setSelectedControl, resetTimerValues, setPomodoro }) => {
+const Labels = ({
+  selectedControl,
+  setSelectedControl,
+  resetTimerValues,
+  setPomodoro,
+}) => {
   function handleSelectedControl(index) {
     setSelectedControl(index);
     resetTimerValues();
@@ -17,7 +22,8 @@ const Labels = ({ selectedControl, setSelectedControl, resetTimerValues, setPomo
           <li
             key={index}
             className={`tw-infoItem ${selectedControl === index && "active"}`}
-            onClick={() => handleSelectedControl(index)}>
+            onClick={() => handleSelectedControl(index)}
+          >
             {controller.label}
           </li>
         ))}

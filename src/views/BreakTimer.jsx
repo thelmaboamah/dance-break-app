@@ -4,11 +4,11 @@ import AudioPlayer from "../components/AudioPlayer";
 import Header from "../components/Header";
 import Timer from "../components/Timer";
 
-export default function BreakTimer({  
+export default function BreakTimer({
   getRemainingTimePercentage,
   pomodoro,
   selectedControl,
-  setPomodoro
+  setPomodoro,
 }) {
   return (
     <PassageAuthGuard unAuthComp={<AuthRedirect />}>
@@ -19,11 +19,11 @@ export default function BreakTimer({
 
         <div className="flex-col gap-32 flex-grow flex items-center justify-center">
           {/* <BreakCenterTimer /> */}
-          <Timer 
-          getRemainingTimePercentage={getRemainingTimePercentage} 
-          pomodoro={pomodoro} 
-          selectedControl={selectedControl} 
-          setPomodoro={setPomodoro}
+          <Timer
+            getRemainingTimePercentage={getRemainingTimePercentage}
+            pomodoro={pomodoro}
+            selectedControl={selectedControl}
+            setPomodoro={setPomodoro}
           />
           <AudioPlayer />
         </div>
