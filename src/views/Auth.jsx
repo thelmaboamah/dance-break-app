@@ -3,10 +3,11 @@ import {
   PassageUnAuthGuard,
 } from "@passageidentity/passage-react";
 import { Navigate } from "react-router-dom";
+import styles from "../styles/Center.module.css";
 
 export default function Auth() {
   return (
-    <>
+    <div className={styles.root}>
       <div className="desktop:flex-1">
         <img
           className="w-full desktop:block hidden h-screen object-cover"
@@ -25,6 +26,6 @@ export default function Auth() {
           <PassageAuth />
         </PassageUnAuthGuard>
       </section>
-    </>
+    </div>
   );
 }

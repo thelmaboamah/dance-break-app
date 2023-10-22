@@ -1,106 +1,90 @@
-import React, { useContext, useEffect, useRef } from "react";
-import { stages } from "../utils/constants";
-import ModalInput from "./ModalInput";
-import { FormDataContext } from "../context/FormDataContext";
+import Chevron from "../../public/icons/chevron-right-solid.svg";
+import { useEffect, useRef } from "react";
+import { usePassageLogout } from "../hooks";
+import { useNavigate } from "react-router-dom";
+export default function Modal() {
+  const { logout } = usePassageLogout();
 
-const Modal = ({ isSettingsOn, setIsSettingsOn, setPomodoro }) => {
-  const { formData, setFormData } = useContext(FormDataContext);
-  const modalRef = useRef();
-  function handleSubmit(e) {
-    e.preventDefault();
-    setPomodoro((prevPomodoro) => ({
-      ...prevPomodoro,
-      pomodoroTime: formData.pomodoroTime * 60,
-      shortBreakTime: formData.shortBreakTime * 60,
-      longBreakTime: formData.longBreakTime * 60,
-    }));
-    setIsSettingsOn(false);
+  const navigate = useNavigate();
+
+  const signout = () => {
+    logout();
+    navigate("/");
+  };
+
+  const bipEvent = useRef(null);
+
+  function installListener(event) {
+    event.preventDefault();
+    console.log("Inside install listener");
+    bipEvent.current = event;
   }
 
-  function handleInputChange(e) {
-    const { name, value } = e.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
-  }
-
-  function handleOutsideClick(e) {
-    if (modalRef.current && !modalRef.current.contains(e.target)) {
-      setIsSettingsOn(false);
+  function handleInstallClick() {
+    if (bipEvent.current) {
+      bipEvent.current.prompt();
+    } else {
+      // incompatible browser, your PWA is not passing the criteria, the user has already installed the PWA
+      //TODO: show the user information on how to install the app
+      alert(
+        "To install the app look for Add to Homescreen or Install in your browser's menu",
+      );
     }
   }
 
   useEffect(() => {
-    document.addEventListener("mousedown", handleOutsideClick);
+    window.addEventListener("beforeinstallprompt", installListener);
 
     return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
+      window.removeEventListener("beforeinstallprompt", installListener);
     };
   }, []);
+
   return (
-    <>
-      {isSettingsOn && (
-        <div
-          className={`block modal absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white w-[20rem] md:w-[28rem] rounded-2xl text-pmd-blue-800 px-6 pt-6 pb-12`}
-          ref={modalRef}>
-          <div className=" flex pb-6 border-b justify-between items-center">
-            <h2 className="font-bold text-xl">Settings</h2>
-            <button onClick={() => setIsSettingsOn(false)}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-          </div>
+    <div className="bg-white fixed right-0 top-0 h-screen desktop:w-[530px] w-[238px]">
+      <div className="bg-white w-full rounded-lg shadow-lg w-96 h-screen">
+        <div className="p-6">
+          <div className="bg-gray-100 rounded-t-lg px-6 py-4"></div>
 
-          <div>
-            <h3 className="uppercase tracking-wider font-bold text-sm py-3">Time (minutes)</h3>
-
-            <form
-              className="inputs flex"
-              onSubmit={handleSubmit}>
-              <ModalInput
-                label={"pomodoro"}
-                name={"pomodoroTime"}
-                defaultValue={formData.pomodoroTime}
-                setFormData={setFormData}
-                onChange={handleInputChange}
-              />
-              <ModalInput
-                label={"short break"}
-                name={"shortBreakTime"}
-                defaultValue={formData.shortBreakTime}
-                setFormData={setFormData}
-                onChange={handleInputChange}
-              />
-              <ModalInput
-                label={"long break"}
-                name={"longBreakTime"}
-                defaultValue={formData.longBreakTime}
-                setFormData={setFormData}
-                onChange={handleInputChange}
-              />
-              <button
-                type="submit"
-                className="absolute -bottom-5 bg-pmd-red-700 text-white font-semibold text-sm rounded-full px-8 py-3 left-1/2 -translate-x-1/2 hover:bg-pmd-red-600 transition-all cursor-pointer">
-                Apply
+          {/* 5 rows */}
+          <ul className="space-y-5">
+            <li>
+              <button className="desktop:w-3/4 w-[189px] desktop:w-[454px] flex justify-between items-center hover:underline focus:outline-none">
+                <div>Update Durations</div>
+                <img
+                  className="w-3 h-3"
+                  src={Chevron}
+                  alt="chevron pointing right"
+                ></img>
               </button>
-            </form>
-          </div>
+            </li>
+            <li>
+              <button className="hover:underline focus:outline-none">
+                Disable Music
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={handleInstallClick}
+                className="hover:underline focus:outline-none"
+              >
+                Download the app
+              </button>
+            </li>
+            <li>
+              <div className="bg-grey border-t-1 w-[189px] desktop:w-[454px] h-[1px]"></div>
+            </li>
+            <li>
+              <button
+                onClick={signout}
+                className="hover:underline focus:outline-none"
+              >
+                Log out
+              </button>
+            </li>
+          </ul>
         </div>
-      )}
-    </>
+      </div>
+    </div>
   );
-};
-
-export default Modal;
+}
