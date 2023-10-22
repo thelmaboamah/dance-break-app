@@ -74,11 +74,7 @@ const useTimer = () => {
     pomodoro.period,
     resetTimerValues,
   ]);
-  console.log(
-    "selected control is ",
-    selectedControl,
-    controllers[selectedControl],
-  );
+
   return {
     pomodoro,
     setPomodoro,
