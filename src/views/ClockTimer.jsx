@@ -1,13 +1,12 @@
 import Labels from "../components/Labels";
-import TimeDisplay from "../components/TimeDisplay";
-import ToggleButton from "../components/ToggleButton";
-import Modal from "../components/Modal";
 import useTimer from "../hooks/useTimer";
-import { CircularProgressbarWithChildren, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { useState } from "react";
 import useCalculateTime from "../hooks/useCalculateTime";
 import { controllers } from "../utils/constants";
+import TimerModal from "../components/TimerModal";
+import WorkTimer from "./WorkTimer";
+import BreakTimer from "./BreakTimer";
 
 const ClockTimer = () => {
   const { pomodoro, selectedControl, setPomodoro, setSelectedControl, resetTimerValues, getRemainingTimePercentage } = useTimer();
@@ -24,36 +23,29 @@ const ClockTimer = () => {
         setSelectedControl={setSelectedControl}
         setPomodoro={setPomodoro}
       />
-      <div className="tw-timer-container">
-        <div className="tw-timer">
-          <div className="flex flex-col justify-center items-center font-semibold relative">
-            <CircularProgressbarWithChildren
-              strokeWidth={2}
-              trailColor="transparent"
-              value={getRemainingTimePercentage()}
-              styles={buildStyles({
-                trailColor: "transparent",
-                pathColor: "#f87070",
-              })}>
-              <TimeDisplay
-                pomodoro={pomodoro}
-                selectedControl={selectedControl}
-              />
-              <ToggleButton
-                pomodoro={pomodoro}
-                setPomodoro={setPomodoro}
-              />
-            </CircularProgressbarWithChildren>
-          </div>
-        </div>
-      </div>
+      {selectedControl === 0 ? (
+        <WorkTimer
+          getRemainingTimePercentage={getRemainingTimePercentage}
+          pomodoro={pomodoro}
+          selectedControl={selectedControl}
+          setPomodoro={setPomodoro}
+        />
+      ) : (
+        <BreakTimer
+          getRemainingTimePercentage={getRemainingTimePercentage}
+          pomodoro={pomodoro}
+          selectedControl={selectedControl}
+          setPomodoro={setPomodoro}
+        />
+      )}
       <button onClick={() => setIsSettingsOn(true)}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-8 h-8 m-6 ">
+          className="w-8 h-8 m-6 "
+        >
           <path
             strokeLinejoin="round"
             strokeLinecap="round"
@@ -61,7 +53,7 @@ const ClockTimer = () => {
           />
         </svg>
       </button>
-      <Modal
+      <TimerModal
         isSettingsOn={isSettingsOn}
         setIsSettingsOn={setIsSettingsOn}
         setPomodoro={setPomodoro}

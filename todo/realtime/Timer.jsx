@@ -2,7 +2,7 @@ import { PassageAuthGuard } from "@passageidentity/passage-react";
 import AuthRedirect from "../../src/components/AuthRedirect";
 import { useContext, useEffect, useState } from "react";
 import { useClockTimer } from "./useClockTimer";
-import { SupabaseContext } from "../../src/views/Welcome";
+// import { SupabaseContext } from "../../src/views/Welcome";
 
 export default function Timer({supabaseClient, isMusicBreak, duration, setWorkTimer, isWorkTimer}) {
   const [start, setStart] = useState(false);

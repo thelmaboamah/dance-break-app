@@ -16,7 +16,7 @@ function App() {
         <Route path="/auth" element={<Auth />}></Route>
         <Route path="/welcome" element={<Welcome />}></Route>
         <Route path="/timer" element={<ClockTimer />}></Route>
-        <Route path="/break" element={<BreakTimer />}></Route>
+        {/* <Route path="/break" element={<BreakTimer />}></Route> */}
         <Route path="/profile" element={<Profile />}></Route>
       </Routes>
     </PassageProvider>

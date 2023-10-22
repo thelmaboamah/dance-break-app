@@ -1,5 +1,5 @@
 export const controllers = [
-  { label: "pomodoro", value: "pomodoroTime" },
+  { label: "work timer", value: "pomodoroTime" },
   { label: "dance break", value: "shortBreakTime" },
   { label: "quiet break", value: "longBreakTime" },
 ];

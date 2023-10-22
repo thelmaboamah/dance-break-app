@@ -60,7 +60,7 @@ const useTimer = () => {
       clearInterval(timer);
     };
   }, [pomodoro.isPaused, selectedControl, setPomodoro, setSelectedControl, pomodoro.period]);
-
+  console.log("selected control is ", selectedControl, controllers[selectedControl])
   return { pomodoro, setPomodoro, selectedControl, setSelectedControl, resetTimerValues, getRemainingTimePercentage };
 };
 
