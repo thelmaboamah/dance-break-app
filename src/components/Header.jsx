@@ -13,7 +13,7 @@ export default function Header() {
 
   return (
     //the whole header
-    <div className="flex justify-between items-center w-full px-8 py-4 z-10 bg-transparent mb-6">
+    <div className="flex justify-between items-center w-full px-8 py-4 z-10 bg-transparent">
       {/* logo and name */}
       <div className="flex flex-row w-full gap-8 items-center">
         <div className="w-10 h-10 cursor-pointer" onClick={handleLogoClick}>
