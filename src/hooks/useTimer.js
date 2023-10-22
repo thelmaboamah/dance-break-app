@@ -11,9 +11,9 @@ const useTimer = () => {
   const resetTimerValues = () => {
     setPomodoro((prevPomodoro) => ({
       ...prevPomodoro,
-      pomodoroTime: formData.pomodoroTime * 60,
-      shortBreakTime: formData.shortBreakTime * 60,
-      longBreakTime: formData.longBreakTime * 60,
+      workTime: formData.workTime * 60,
+      danceTime: formData.danceTime * 60,
+      quietTime: formData.quietTime * 60,
     }));
   };
 
@@ -66,12 +66,9 @@ const useTimer = () => {
     setPomodoro,
     setSelectedControl,
     pomodoro.period,
+    resetTimerValues,
   ]);
-  console.log(
-    "selected control is ",
-    selectedControl,
-    controllers[selectedControl],
-  );
+
   return {
     pomodoro,
     setPomodoro,

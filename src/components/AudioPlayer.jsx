@@ -1,3 +1,4 @@
+import { useState } from "react";
 import ReactAudioPlayer, { RHAP_UI } from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import {
@@ -8,11 +9,52 @@ import {
 } from "react-icons/bs";
 
 export default function AudioPlayer() {
+  const playlist = [
+    {
+      songName: "Love On Top",
+      artistName: "Beyoncé",
+      src: "/audio/love-on-top.mp3",
+    },
+    {
+      songName: "I Like It",
+      artistName: "Enriqure Iglesias",
+      src: "/audio/i-like-it.mp3",
+    },
+    {
+      songName: "Don't Start Now",
+      artistName: "Dua Lipa",
+      src: "/audio/dont-start-now.mp3",
+    },
+    {
+      songName: "One More Time",
+      artistName: "Daft Punk",
+      src: "/audio/one-more-time.mp3",
+    },
+    {
+      songName: "Adventure of a Lifetime",
+      artistName: "Coldplay",
+      src: "/audio/adventure-of-a-lifetime.mp3",
+    },
+    {
+      songName: "Just Dance",
+      artistName: "Lady Gaga",
+      src: "/audio/just-dance.mp3",
+    },
+  ];
+
+  const [songIndex, setSongIndex] = useState(getRandomInt(playlist.length));
+
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+
   return (
     <section className="w-[360px]">
       <div>
-        <h3 className="mb-2 text-h3">Song Name</h3>
-        <p className="mb-1 text-small text-lightGray">Artist Name</p>
+        <h3 className="mb-1 text-small">{playlist[songIndex].songName}</h3>
+        <p className="mb-1 text-xs text-lightGray">
+          {playlist[songIndex].artistName}
+        </p>
       </div>
       <ReactAudioPlayer
         autoPlay
@@ -20,7 +62,7 @@ export default function AudioPlayer() {
         layout="horizontal"
         showJumpControls={false}
         showDownloadProgress={false}
-        src="/audio/love-on-top.mp3"
+        src={playlist[songIndex].src}
         customIcons={{
           play: <BsPlayFill />,
           pause: <BsPauseFill />,
@@ -35,8 +77,10 @@ export default function AudioPlayer() {
           </div>,
           RHAP_UI.DURATION,
         ]}
-        // customVolumeControls={[]}
         customAdditionalControls={[]}
+        onEnded={() => {
+          setSongIndex(getRandomInt(playlist.length));
+        }}
       />
     </section>
   );

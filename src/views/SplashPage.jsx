@@ -1,6 +1,6 @@
 import { PassageUnAuthGuard } from "@passageidentity/passage-react";
 import { Link } from "react-router-dom";
-import Welcome from "./Welcome";
+import Home from "./Home";
 import { useEffect, useRef } from "react";
 import styles from "../styles/Center.module.css";
 export default function SplashPage() {
@@ -34,7 +34,7 @@ export default function SplashPage() {
 
   return (
     <div className={styles.root}>
-      <PassageUnAuthGuard authComp={<Welcome />}>
+      <PassageUnAuthGuard authComp={<Home />}>
         <main className="w-full bg-yellowBg h-screen flex">
           <section className="w-4/5 desktop:w-1/2 m-auto">
             <img
@@ -49,10 +49,15 @@ export default function SplashPage() {
               Dance Break
             </h1>
             <p className="text-body pb-24">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia
-              sint, laudantium praesentium temporibus quas beatae soluta
-              excepturi magnam dicta provident sequi ex ipsa natus ut aliquam
-              facere, voluptatum aperiam aspernatur?
+              We&apos;ve all heard it: &quot;Sitting is the new smoking.&quot;
+              <br />
+              <br />
+              Dance Break invites you to engage in brief, 5-minute activity
+              sessions. Whether you opt for a calming stretch or an uplifting
+              dance, the choice is yours.
+              <br />
+              <br />
+              So, are you ready to take a Dance Break? 🕺💃.
             </p>
             <div className="flex gap-24 flex-col desktop:flex-row items-center">
               <Link to="/auth">

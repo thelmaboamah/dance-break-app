@@ -1,8 +1,13 @@
-import Chevron from "../../public/icons/chevron-right-solid.svg";
-import { useEffect, useRef } from "react";
+import Chevron from "../assets/chevron-right-solid.svg";
+import { useState, useEffect, useRef } from "react";
 import { usePassageLogout } from "../hooks";
 import { useNavigate } from "react-router-dom";
+import Switch from "./Switch";
 export default function Modal({setIsSettingsOn}) {
+  const [isQuietBreak, setIsQuietBreak] = useState(
+    JSON.parse(localStorage.getItem("is_quiet_break")) || false,
+  );
+
   const { logout } = usePassageLogout();
 
   const navigate = useNavigate();
@@ -37,6 +42,13 @@ export default function Modal({setIsSettingsOn}) {
 
   }
 
+  function handleMusicToggle() {
+    setIsQuietBreak((status) => {
+      localStorage.setItem("is_quiet_break", JSON.stringify(!status));
+      return !status;
+    });
+  }
+
   useEffect(() => {
     window.addEventListener("beforeinstallprompt", installListener);
 
@@ -45,8 +57,15 @@ export default function Modal({setIsSettingsOn}) {
     };
   }, []);
 
+  useEffect(() => {
+    const status = JSON.parse(localStorage.getItem("is_quiet_break"));
+    if (status == null) {
+      localStorage.setItem("is_quiet_break", JSON.stringify(false));
+    }
+  }, []);
+
   return (
-    <div className="bg-white fixed right-0 top-0 h-screen desktop:w-[530px] w-[238px]">
+    <div className="bg-white fixed right-0 top-0 h-screen desktop:w-[330px] w-[238px] z-20">
       <div className="bg-white w-full rounded-lg shadow-lg w-96 h-screen">
         <div className="p-6">
           <div className="bg-gray-100 rounded-t-lg px-6 py-4"></div>
@@ -54,7 +73,7 @@ export default function Modal({setIsSettingsOn}) {
           {/* 5 rows */}
           <ul className="space-y-5">
             <li>
-              <button className="desktop:w-3/4 w-[189px] desktop:w-[454px] flex justify-between items-center hover:underline focus:outline-none"
+              <button className="desktop:w-3/4 w-[189px] desktop:w-[262px] flex justify-between items-center hover:underline focus:outline-none pointer-events-auto"
               onClick={() => setIsSettingsOn(false)}
               >
                 <div>Update Durations</div>
@@ -66,25 +85,30 @@ export default function Modal({setIsSettingsOn}) {
               </button>
             </li>
             <li>
-              <button className="hover:underline focus:outline-none">
-                Disable Music
-              </button>
+              <div className="w-[189px] desktop:w-[262px] flex justify-between items-center">
+                <span>Disable Music</span>
+                <Switch
+                  isOn={isQuietBreak}
+                  onColor="#00C2FF"
+                  handleToggle={handleMusicToggle}
+                />
+              </div>
             </li>
             <li>
               <button
                 onClick={handleInstallClick}
-                className="hover:underline focus:outline-none"
+                className="hover:underline focus:outline-none pointer-events-auto"
               >
                 Download the app
               </button>
             </li>
             <li>
-              <div className="bg-grey border-t-1 w-[189px] desktop:w-[454px] h-[1px]"></div>
+              <div className="bg-grey border-t-1 w-[189px] desktop:w-[262px] h-[1px]"></div>
             </li>
             <li>
               <button
                 onClick={signout}
-                className="hover:underline focus:outline-none"
+                className="hover:underline focus:outline-none pointer-events-auto"
               >
                 Log out
               </button>

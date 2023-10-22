@@ -16,7 +16,7 @@ const Labels = ({
   }
 
   return (
-    <div>
+    <div className="absolute left-0 bottom-0 z-50">
       <ul className="tw-infoContainer">
         {controllers.map((controller, index) => (
           <li

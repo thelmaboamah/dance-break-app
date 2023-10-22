@@ -15,21 +15,24 @@ export default function Timer({
     <div className="tw-timer-container">
       <div className="tw-timer">
         <div className="flex flex-col justify-center items-center font-semibold relative">
-          <CircularProgressbarWithChildren
-            strokeWidth={2}
-            trailColor="transparent"
-            value={getRemainingTimePercentage()}
-            styles={buildStyles({
-              trailColor: "transparent",
-              pathColor: "#f87070",
-            })}
-          >
-            <TimeDisplay
-              pomodoro={pomodoro}
-              selectedControl={selectedControl}
-            />
-            <ToggleButton pomodoro={pomodoro} setPomodoro={setPomodoro} />
-          </CircularProgressbarWithChildren>
+          <div className="w-[242px] h-[242px]">
+            <CircularProgressbarWithChildren
+              strokeWidth={4}
+              trailColor="transparent"
+              value={getRemainingTimePercentage()}
+              styles={buildStyles({
+                trailColor: "#818181",
+                pathColor: "#00C2FF",
+              })}
+              counterClockwise={true}
+            >
+              <TimeDisplay
+                pomodoro={pomodoro}
+                selectedControl={selectedControl}
+              />
+            </CircularProgressbarWithChildren>
+          </div>
+          <ToggleButton pomodoro={pomodoro} setPomodoro={setPomodoro} />
         </div>
       </div>
     </div>

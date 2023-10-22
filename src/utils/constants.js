@@ -1,13 +1,13 @@
 export const controllers = [
-  { label: "work timer", value: "pomodoroTime" },
-  { label: "dance break", value: "shortBreakTime" },
-  { label: "quiet break", value: "longBreakTime" },
+  { label: "work time", value: "workTime" },
+  { label: "dance break", value: "danceTime" },
+  { label: "quiet break", value: "quietTime" },
 ];
 
 export const stages = {
-  pomodoroTime: 30 * 60,
-  shortBreakTime: 5 * 60,
-  longBreakTime: 5 * 60,
+  workTime: 30 * 60,
+  danceTime: 5 * 60,
+  quietTime: 5 * 60,
   isPaused: true,
   period: 1,
 };

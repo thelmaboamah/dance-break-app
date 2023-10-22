@@ -15,6 +15,7 @@ export default {
       lightGray: "#818181", // for audio player text
       grey: "#E8E8E8", // for horizontal line in menu
       white: "#FFFFFF",
+      transparent: "transparent",
     },
     fontFamily: {
       dmSans: ["DM Sans", "sans-serif"],
@@ -28,6 +29,7 @@ export default {
         },
       ],
       small: ["16px", { lineHeight: "1.2em", fontWeight: "400" }],
+      xs: ["12px", { lineHeight: "1.2em", fontWeight: "400" }],
       button: [
         "16px",
         {
@@ -92,6 +94,9 @@ export default {
         "logo-sm": "40px", //small logo size for nav
         "button-w": "238px", // width of button
         "button-h": "43px", // height of button
+      },
+      zIndex: {
+        1: "1",
       },
     },
   },
