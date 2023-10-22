@@ -1,7 +1,7 @@
 import { PassageAuthGuard } from "@passageidentity/passage-react";
-import AuthRedirect from "../components/AuthRedirect";
-import Header from "../components/Header";
-import Timer from "../components/Timer";
+import AuthRedirect from "./AuthRedirect";
+import Header from "./Header";
+import Timer from "./Timer";
 
 export default function WorkTimer({
   getRemainingTimePercentage,
@@ -19,7 +19,6 @@ export default function WorkTimer({
         </div>
         {/* <div className="flex-grow flex flex-col justify-center items-center"> */}
         <div className="flex-grow flex items-center justify-center">
-          {/* <CenterTimer /> */}
           <Timer
             getRemainingTimePercentage={getRemainingTimePercentage}
             pomodoro={pomodoro}

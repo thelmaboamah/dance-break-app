@@ -9,9 +9,9 @@ const TimerModal = ({ isSettingsOn, setIsSettingsOn, setPomodoro }) => {
     e.preventDefault();
     setPomodoro((prevPomodoro) => ({
       ...prevPomodoro,
-      pomodoroTime: formData.pomodoroTime * 60,
-      shortBreakTime: formData.shortBreakTime * 60,
-      longBreakTime: formData.longBreakTime * 60,
+      workTime: formData.workTime * 60,
+      danceTime: formData.danceTime * 60,
+      quietTime: formData.quietTime * 60,
     }));
     setIsSettingsOn(false);
   }
@@ -72,22 +72,22 @@ const TimerModal = ({ isSettingsOn, setIsSettingsOn, setPomodoro }) => {
             <form className="inputs flex" onSubmit={handleSubmit}>
               <ModalInput
                 label={"pomodoro"}
-                name={"pomodoroTime"}
-                defaultValue={formData.pomodoroTime}
+                name={"workTime"}
+                defaultValue={formData.workTime}
                 setFormData={setFormData}
                 onChange={handleInputChange}
               />
               <ModalInput
                 label={"short break"}
-                name={"shortBreakTime"}
-                defaultValue={formData.shortBreakTime}
+                name={"danceTime"}
+                defaultValue={formData.danceTime}
                 setFormData={setFormData}
                 onChange={handleInputChange}
               />
               <ModalInput
                 label={"long break"}
-                name={"longBreakTime"}
-                defaultValue={formData.longBreakTime}
+                name={"quietTime"}
+                defaultValue={formData.quietTime}
                 setFormData={setFormData}
                 onChange={handleInputChange}
               />
