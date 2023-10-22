@@ -51,8 +51,8 @@ export default function AudioPlayer() {
   return (
     <section className="w-[360px]">
       <div>
-        <h3 className="mb-2 text-h3">{playlist[songIndex].songName}</h3>
-        <p className="mb-1 text-small text-lightGray">
+        <h3 className="mb-1 text-small">{playlist[songIndex].songName}</h3>
+        <p className="mb-1 text-xs text-lightGray">
           {playlist[songIndex].artistName}
         </p>
       </div>
