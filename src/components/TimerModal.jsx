@@ -45,13 +45,14 @@ const TimerModal = ({ setIsSettingsOn, setPomodoro }) => {
   return (
     <>
       <div
-        className="block modal absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white w-[20rem] md:w-[28rem] rounded-2xl px-6 pt-6 pb-12"
+        className="block modal fixed shadow-lg border border-grey top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl p-6"
         ref={modalRef}
       >
         <div>
+          <h3 className="text-button py-3">Update Durations</h3>
           <h3 className="text-sm py-3">Time (minutes)</h3>
 
-          <form className="inputs" onSubmit={handleSubmit}>
+          <form className="inputs flex flex-col" onSubmit={handleSubmit}>
             <ModalInput
               label={"work timer"}
               name={"workTime"}
