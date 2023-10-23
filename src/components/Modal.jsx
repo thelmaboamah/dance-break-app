@@ -1,12 +1,15 @@
-// import Chevron from "../assets/chevron-right-solid.svg";
+import Chevron from "../assets/chevron-right-solid.svg";
 import { useState, useEffect, useRef } from "react";
 import { usePassageLogout } from "../hooks";
 import { useNavigate } from "react-router-dom";
 import Switch from "./Switch";
-export default function Modal() {
+import TimerModal from "./TimerModal";
+export default function Modal({ setPomodoro }) {
   const [isQuietBreak, setIsQuietBreak] = useState(
     JSON.parse(localStorage.getItem("is_quiet_break")) || false,
   );
+
+  const [isSettingsOpened, setIsSettingsOpened] = useState(false);
 
   const { logout } = usePassageLogout();
 
@@ -35,6 +38,18 @@ export default function Modal() {
         "To install the app look for Add to Homescreen or Install in your browser's menu",
       );
     }
+  }
+
+  function handleSettingClick() {
+    setIsSettingsOpened(
+      // !isSettingsOpened);
+
+      (status) => {
+        localStorage.setItem("is_settings_on", JSON.stringify(!status));
+        return !status;
+      },
+    );
+    console.log("changed setting on to ", isSettingsOpened);
   }
 
   function handleMusicToggle() {
@@ -67,8 +82,11 @@ export default function Modal() {
 
           {/* 5 rows */}
           <ul className="space-y-5">
-            {/* <li>
-              <button className="desktop:w-3/4 w-[189px] desktop:w-[262px] flex justify-between items-center hover:underline focus:outline-none pointer-events-auto">
+            <li>
+              <button
+                className="desktop:w-3/4 w-[189px] desktop:w-[262px] flex justify-between items-center hover:underline focus:outline-none pointer-events-auto"
+                onClick={handleSettingClick}
+              >
                 <div>Update Durations</div>
                 <img
                   className="w-3 h-3"
@@ -76,7 +94,13 @@ export default function Modal() {
                   alt="chevron pointing right"
                 ></img>
               </button>
-            </li> */}
+              {isSettingsOpened && (
+                <TimerModal
+                  setIsSettingsOn={setIsSettingsOpened}
+                  setPomodoro={setPomodoro}
+                />
+              )}
+            </li>
             <li>
               <div className="w-[189px] desktop:w-[262px] flex justify-between items-center">
                 <span>Disable Music</span>

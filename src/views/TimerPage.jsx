@@ -1,4 +1,3 @@
-// import Labels from "../components/Labels";
 import useTimer from "../hooks/useTimer";
 import WorkTimer from "../components/WorkTimer";
 import BreakTimer from "../components/BreakTimer";
@@ -16,13 +15,6 @@ const TimerPage = () => {
 
   return (
     <>
-      {/* TODO remove Label for demo or deployment */}
-      {/* <Labels
-        resetTimerValues={resetTimerValues}
-        selectedControl={selectedControl}
-        setSelectedControl={setSelectedControl}
-        setPomodoro={setPomodoro}
-      /> */}
       {selectedControl === 0 ? (
         <WorkTimer
           getRemainingTimePercentage={getRemainingTimePercentage}

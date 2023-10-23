@@ -5,7 +5,7 @@ import DanceBreakLogo from "../assets/dance_break_logo.svg";
 import Modal from "../components/Modal";
 import { useLinkClickHandler } from "react-router-dom";
 
-export default function Header() {
+export default function Header({ setPomodoro }) {
   const [isModalOpen, setModalOpen] = useState(false);
   const handleLogoClick = useLinkClickHandler("/home");
 
@@ -29,7 +29,7 @@ export default function Header() {
           alt="BarsSolidorXSolid"
           onClick={() => setModalOpen(!isModalOpen)}
         />
-        {isModalOpen && <Modal />}
+        {isModalOpen && <Modal setPomodoro={setPomodoro} />}
       </div>
     </div>
   );

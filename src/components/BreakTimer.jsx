@@ -17,7 +17,7 @@ export default function BreakTimer({
     <PassageAuthGuard unAuthComp={<AuthRedirect />}>
       <div className="flex flex-col h-screen bg-yellowBg">
         <div className="flex-shrink-0">
-          <Header />
+          <Header setPomodoro={setPomodoro} />
         </div>
 
         <div className="flex-col gap-y-32 flex-grow flex items-center justify-center z-1">
