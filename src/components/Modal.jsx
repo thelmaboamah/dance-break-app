@@ -1,4 +1,4 @@
-import Chevron from "../assets/chevron-right-solid.svg";
+// import Chevron from "../assets/chevron-right-solid.svg";
 import { useState, useEffect, useRef } from "react";
 import { usePassageLogout } from "../hooks";
 import { useNavigate } from "react-router-dom";
@@ -67,7 +67,7 @@ export default function Modal() {
 
           {/* 5 rows */}
           <ul className="space-y-5">
-            <li>
+            {/* <li>
               <button className="desktop:w-3/4 w-[189px] desktop:w-[262px] flex justify-between items-center hover:underline focus:outline-none pointer-events-auto">
                 <div>Update Durations</div>
                 <img
@@ -76,7 +76,7 @@ export default function Modal() {
                   alt="chevron pointing right"
                 ></img>
               </button>
-            </li>
+            </li> */}
             <li>
               <div className="w-[189px] desktop:w-[262px] flex justify-between items-center">
                 <span>Disable Music</span>
@@ -87,7 +87,7 @@ export default function Modal() {
                 />
               </div>
             </li>
-            <li>
+            <li className="standalone-hidden">
               <button
                 onClick={handleInstallClick}
                 className="hover:underline focus:outline-none pointer-events-auto"
