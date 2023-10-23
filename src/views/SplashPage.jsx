@@ -53,9 +53,10 @@ export default function SplashPage() {
             We&apos;ve all heard it: &quot;Sitting is the new smoking.&quot;
             <br />
             <br />
-            Dance Break invites you to engage in brief, 5-minute activity
-            sessions. Whether you opt for a calming stretch or an uplifting
-            dance, the choice is yours.
+            Dance Break is designed to combat our unhealthy sedentary
+            lifestyles. It invites you to engage in a 5-minute physical activity
+            break every 30 minutes. The app offers the choice between a silent
+            break or an energizing dance break.
             <br />
             <br />
             So, are you ready to take a Dance Break? 🕺💃.
