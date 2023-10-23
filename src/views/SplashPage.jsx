@@ -1,8 +1,9 @@
-import { PassageUnAuthGuard } from "@passageidentity/passage-react";
+// import { PassageUnAuthGuard } from "@passageidentity/passage-react";
 import { Link } from "react-router-dom";
-import Home from "./Home";
+// import Home from "./Home";
 import { useEffect, useRef } from "react";
 import styles from "../styles/Center.module.css";
+
 export default function SplashPage() {
   const bipEvent = useRef(null);
 
@@ -34,54 +35,54 @@ export default function SplashPage() {
 
   return (
     <div className={styles.root}>
-      <PassageUnAuthGuard authComp={<Home />}>
-        <main className="w-full bg-yellowBg h-screen flex">
-          <section className="w-4/5 desktop:w-1/2 m-auto">
-            <img
-              src="/icons/dance_break_logo.svg"
-              alt="Dance Break Logo"
-              className="w-logo-lg m-auto pb-32"
-            ></img>
-            <h1 className="text-h1-regular text-center desktop:text-left">
-              Welcome to
-            </h1>
-            <h1 className="text-h1-bold text-center desktop:text-left pb-24">
-              Dance Break
-            </h1>
-            <p className="text-body pb-24">
-              We&apos;ve all heard it: &quot;Sitting is the new smoking.&quot;
-              <br />
-              <br />
-              Dance Break invites you to engage in brief, 5-minute activity
-              sessions. Whether you opt for a calming stretch or an uplifting
-              dance, the choice is yours.
-              <br />
-              <br />
-              So, are you ready to take a Dance Break? 🕺💃.
-            </p>
-            <div className="flex gap-24 flex-col desktop:flex-row items-center">
-              <Link to="/auth">
-                <button className="primary-button flex-1">
-                  Sign Up / Log In
-                </button>
-              </Link>
-
-              <button
-                id="install"
-                className="download-button flex-1"
-                onClick={handleInstallClick}
-              >
-                <img
-                  className="w-[25px] text-blueText pr-8"
-                  src="/icons/download.svg"
-                  alt="Download icon"
-                ></img>
-                <span>Download App</span>
+      {/* <PassageUnAuthGuard authComp={<Home />}> */}
+      <main className="w-full bg-yellowBg h-screen flex">
+        <section className="w-4/5 desktop:w-1/2 m-auto">
+          <img
+            src="/icons/dance_break_logo.svg"
+            alt="Dance Break Logo"
+            className="w-logo-lg m-auto pb-32"
+          ></img>
+          <h1 className="text-h1-regular text-center desktop:text-left">
+            Welcome to
+          </h1>
+          <h1 className="text-h1-bold text-center desktop:text-left pb-24">
+            Dance Break
+          </h1>
+          <p className="text-body pb-24">
+            We&apos;ve all heard it: &quot;Sitting is the new smoking.&quot;
+            <br />
+            <br />
+            Dance Break invites you to engage in brief, 5-minute activity
+            sessions. Whether you opt for a calming stretch or an uplifting
+            dance, the choice is yours.
+            <br />
+            <br />
+            So, are you ready to take a Dance Break? 🕺💃.
+          </p>
+          <div className="flex gap-24 flex-col desktop:flex-row items-center">
+            <Link to="/auth">
+              <button className="primary-button flex-1">
+                Sign Up / Log In
               </button>
-            </div>
-          </section>
-        </main>
-      </PassageUnAuthGuard>
+            </Link>
+
+            <button
+              id="install"
+              className="download-button flex-1"
+              onClick={handleInstallClick}
+            >
+              <img
+                className="w-[25px] text-blueText pr-8"
+                src="/icons/download.svg"
+                alt="Download icon"
+              ></img>
+              <span>Download App</span>
+            </button>
+          </div>
+        </section>
+      </main>
+      {/* </PassageUnAuthGuard> */}
     </div>
   );
 }

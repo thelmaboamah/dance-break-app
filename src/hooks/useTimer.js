@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useContext } from "react";
+import { useEffect, useState, useRef, useContext, useCallback } from "react";
 import { stages, controllers } from "../utils/constants";
 import { FormDataContext } from "../context/FormDataContext";
 // import ring from "../assets/bell-ring.mp3";
@@ -13,14 +13,14 @@ const useTimer = () => {
   //   return audio.play();
   // };
 
-  const resetTimerValues = () => {
+  const resetTimerValues = useCallback(() => {
     setPomodoro((prevPomodoro) => ({
       ...prevPomodoro,
       workTime: formData.workTime * 60,
       danceTime: formData.danceTime * 60,
       quietTime: formData.quietTime * 60,
     }));
-  };
+  }, [formData]);
 
   const getRemainingTimePercentage = () => {
     const totalTime = formData[controllers[selectedControl].value] * 60;
