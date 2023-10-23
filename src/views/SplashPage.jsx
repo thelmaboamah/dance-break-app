@@ -53,9 +53,10 @@ export default function SplashPage() {
             We&apos;ve all heard it: &quot;Sitting is the new smoking.&quot;
             <br />
             <br />
-            Dance Break invites you to engage in brief, 5-minute activity sessions. 
-            It offers the choice between a quiet break or an energizing, song-filled dance break. 
-            Whichever you choose, just make sure to move!
+            Dance Break invites you to engage in brief, 5-minute activity
+            sessions. It offers the choice between a quiet break or an
+            energizing, song-filled dance break. Whichever you choose, just make
+            sure to move!
             <br />
             <br />
             So, are you ready to take a Dance Break? 🕺💃.
