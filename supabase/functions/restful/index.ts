@@ -10,7 +10,7 @@ import { createHmac } from "https://deno.land/std@0.173.0/node/crypto.ts";
 
 // TODO: add netlify to origin
 const corsHeaders = {
-  "Access-Control-Allow-Origin": "http://localhost:5173",
+  "Access-Control-Allow-Origin": "http://localhost:5173, https://dance-break-app.onrender.com",
   "Access-Control-Allow-Headers":
     "content-type, authorization, x-client-info, apikey",
   "Access-Control-Allow-Methods": "POST, GET",
