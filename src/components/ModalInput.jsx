@@ -1,10 +1,7 @@
 const ModalInput = ({ label, defaultValue, onChange, name }) => {
   return (
     <div className="form-group flex flex-col flex-auto mb-5">
-      <label
-        htmlFor={name}
-        className="text-xs pb-1"
-      >
+      <label htmlFor={name} className="text-xs pb-1">
         {label}
       </label>
       <input

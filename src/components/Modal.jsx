@@ -43,13 +43,13 @@ export default function Modal({ setPomodoro }) {
   function handleSettingClick() {
     setIsSettingsOpened(
       // !isSettingsOpened);
-    
+
       (status) => {
-      localStorage.setItem("is_settings_on", JSON.stringify(!status));
-      return !status;
-    }
+        localStorage.setItem("is_settings_on", JSON.stringify(!status));
+        return !status;
+      },
     );
-    console.log("changed setting on to ", isSettingsOpened)
+    console.log("changed setting on to ", isSettingsOpened);
   }
 
   function handleMusicToggle() {

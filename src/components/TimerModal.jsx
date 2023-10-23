@@ -49,10 +49,7 @@ const TimerModal = ({ setIsSettingsOn, setPomodoro }) => {
         ref={modalRef}
       >
         <div>
-          <h3 className="text-sm py-3"
-          >
-            Time (minutes)
-          </h3>
+          <h3 className="text-sm py-3">Time (minutes)</h3>
 
           <form className="inputs" onSubmit={handleSubmit}>
             <ModalInput
@@ -76,10 +73,7 @@ const TimerModal = ({ setIsSettingsOn, setPomodoro }) => {
               setFormData={setFormData}
               onChange={handleInputChange}
             />
-            <button
-              type="submit"
-              className="primary-button mb-3"
-            >
+            <button type="submit" className="primary-button mb-3">
               Save
             </button>
 
