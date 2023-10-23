@@ -1,8 +1,6 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Dance Break prompts users to engage in a 5-minute physical activity break every 30 minutes. The app offers the choice between a silent stretching break or an energizing dance break.
 
-Currently, two official plugins are available:
+Built to be cross-platform using progressive web app technologies, you can use it from your phone, browser, or desktop. 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+So, are you ready to take a Dance Break? 🕺💃.

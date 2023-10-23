@@ -25,23 +25,22 @@ const TimerModal = ({ setIsSettingsOn, setPomodoro }) => {
     }));
   }
 
-  function handleOutsideClick(e) {
-    if (modalRef.current && !modalRef.current.contains(e.target)) {
-      setIsSettingsOn(false);
-    }
-  }
-
   function handleCancel() {
     setIsSettingsOn(false);
   }
 
   useEffect(() => {
+    function handleOutsideClick(e) {
+      if (modalRef.current && !modalRef.current.contains(e.target)) {
+        setIsSettingsOn(false);
+      }
+    }
     document.addEventListener("mousedown", handleOutsideClick);
 
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
-  }, []);
+  }, [setIsSettingsOn]);
 
   return (
     <>

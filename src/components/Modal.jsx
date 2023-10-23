@@ -111,7 +111,7 @@ export default function Modal({ setPomodoro }) {
                 />
               </div>
             </li>
-            <li>
+            <li className="standalone-hidden">
               <button
                 onClick={handleInstallClick}
                 className="hover:underline focus:outline-none pointer-events-auto"

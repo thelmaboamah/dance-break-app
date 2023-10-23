@@ -111,7 +111,8 @@ passage-auth {
 }
 
 @media (display-mode: standalone) {
-  #install {
+  #install,
+  .standalone-hidden {
     display: none;
   }
 }
