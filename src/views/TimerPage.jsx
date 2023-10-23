@@ -17,12 +17,12 @@ const TimerPage = () => {
   return (
     <>
       {/* TODO remove Label for demo or deployment */}
-      <Labels
+      {/* <Labels
         resetTimerValues={resetTimerValues}
         selectedControl={selectedControl}
         setSelectedControl={setSelectedControl}
         setPomodoro={setPomodoro}
-      />
+      /> */}
       {selectedControl === 0 ? (
         <WorkTimer
           getRemainingTimePercentage={getRemainingTimePercentage}

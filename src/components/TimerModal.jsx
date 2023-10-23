@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef } from "react";
 import ModalInput from "./ModalInput";
 import { FormDataContext } from "../context/FormDataContext";
 
-const TimerModal = ({ isSettingsOn, setIsSettingsOn, setPomodoro }) => {
+const TimerModal = ({ setIsSettingsOn, setPomodoro }) => {
   const { formData, setFormData } = useContext(FormDataContext);
   const modalRef = useRef();
 
@@ -31,6 +31,10 @@ const TimerModal = ({ isSettingsOn, setIsSettingsOn, setPomodoro }) => {
     }
   }
 
+  function handleCancel() {
+    setIsSettingsOn(false);
+  }
+
   useEffect(() => {
     document.addEventListener("mousedown", handleOutsideClick);
 
@@ -38,71 +42,58 @@ const TimerModal = ({ isSettingsOn, setIsSettingsOn, setPomodoro }) => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
   }, []);
-  
+
   return (
     <>
-      {isSettingsOn && (
-        <div
-          className={`block modal absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white w-[20rem] md:w-[28rem] rounded-2xl text-pmd-blue-800 px-6 pt-6 pb-12`}
-          ref={modalRef}
-        >
-          <div className=" flex pb-6 border-b justify-between items-center">
-            <h2 className="font-bold text-xl">Update Durations</h2>
-            {/* <button onClick={() => setIsSettingsOn(false)}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button> */}
-          </div>
+      <div
+        className="block modal absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white w-[20rem] md:w-[28rem] rounded-2xl px-6 pt-6 pb-12"
+        ref={modalRef}
+      >
+        <div>
+          <h3 className="text-sm py-3"
+          >
+            Time (minutes)
+          </h3>
 
-          <div>
-            <h3 className="uppercase tracking-wider font-bold text-sm py-3">
-              Time (minutes)
-            </h3>
+          <form className="inputs" onSubmit={handleSubmit}>
+            <ModalInput
+              label={"work timer"}
+              name={"workTime"}
+              defaultValue={formData.workTime}
+              setFormData={setFormData}
+              onChange={handleInputChange}
+            />
+            <ModalInput
+              label={"dance break"}
+              name={"danceTime"}
+              defaultValue={formData.danceTime}
+              setFormData={setFormData}
+              onChange={handleInputChange}
+            />
+            <ModalInput
+              label={"quiet break"}
+              name={"quietTime"}
+              defaultValue={formData.quietTime}
+              setFormData={setFormData}
+              onChange={handleInputChange}
+            />
+            <button
+              type="submit"
+              className="primary-button mb-3"
+            >
+              Save
+            </button>
 
-            <form className="inputs flex" onSubmit={handleSubmit}>
-              <ModalInput
-                label={"work timer"}
-                name={"workTime"}
-                defaultValue={formData.workTime}
-                setFormData={setFormData}
-                onChange={handleInputChange}
-              />
-              <ModalInput
-                label={"dance break"}
-                name={"danceTime"}
-                defaultValue={formData.danceTime}
-                setFormData={setFormData}
-                onChange={handleInputChange}
-              />
-              <ModalInput
-                label={"quiet break"}
-                name={"quietTime"}
-                defaultValue={formData.quietTime}
-                setFormData={setFormData}
-                onChange={handleInputChange}
-              />
-              <button
-                type="submit"
-                className="absolute -bottom-5 bg-pmd-red-700 text-white font-semibold text-sm rounded-full px-8 py-3 left-1/2 -translate-x-1/2 hover:bg-pmd-red-600 transition-all cursor-pointer"
-              >
-                Apply
-              </button>
-            </form>
-          </div>
+            <button
+              type="submit"
+              className="secondary-button"
+              onClick={handleCancel}
+            >
+              Cancel
+            </button>
+          </form>
         </div>
-      )}
+      </div>
     </>
   );
 };
