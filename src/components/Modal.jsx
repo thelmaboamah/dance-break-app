@@ -49,7 +49,6 @@ export default function Modal({ setPomodoro }) {
         return !status;
       },
     );
-    console.log("changed setting on to ", isSettingsOpened);
   }
 
   function handleMusicToggle() {
