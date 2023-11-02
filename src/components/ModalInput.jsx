@@ -6,8 +6,9 @@ const ModalInput = ({ label, defaultValue, onChange, name }) => {
       </label>
       <input
         className="w-48 py-2 px-4 text-xs rounded-xl border border-grey"
-        min="1"
+        min="0"
         max="60"
+        step="any"
         type="number"
         name={name}
         defaultValue={defaultValue}
