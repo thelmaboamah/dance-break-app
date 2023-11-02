@@ -3,7 +3,6 @@ import AuthRedirect from "./AuthRedirect";
 import AudioPlayer from "./AudioPlayer";
 import Header from "./Header";
 import Timer from "./Timer";
-import Confetti from "../../public/images/Confetti.png";
 
 export default function BreakTimer({
   getRemainingTimePercentage,
@@ -34,7 +33,7 @@ export default function BreakTimer({
         </div>
         <img
           id="Confetti"
-          src={Confetti}
+          src="/images/Confetti.png"
           alt="confetti"
           className="fixed bottom-0 left-0 object-cover w-full h-[670px] pointer-events-none opacity-[0.6]"
         />
