@@ -11,35 +11,15 @@ import {
 export default function AudioPlayer() {
   const playlist = [
     {
-      songName: "Love On Top",
-      artistName: "Beyoncé",
-      src: "/audio/love-on-top.mp3",
+      songName: "Track 1",
+      artistName: "Dance Break",
+      src: "audio/DanceBreak1.m4a"
     },
     {
-      songName: "I Like It",
-      artistName: "Enriqure Iglesias",
-      src: "/audio/i-like-it.mp3",
-    },
-    {
-      songName: "Don't Start Now",
-      artistName: "Dua Lipa",
-      src: "/audio/dont-start-now.mp3",
-    },
-    {
-      songName: "One More Time",
-      artistName: "Daft Punk",
-      src: "/audio/one-more-time.mp3",
-    },
-    {
-      songName: "Adventure of a Lifetime",
-      artistName: "Coldplay",
-      src: "/audio/adventure-of-a-lifetime.mp3",
-    },
-    {
-      songName: "Just Dance",
-      artistName: "Lady Gaga",
-      src: "/audio/just-dance.mp3",
-    },
+      songName: "Track 2",
+      artistName: "Dance Break",
+      src: "audio/DanceBreak2.m4a"
+    }
   ];
 
   const [songIndex, setSongIndex] = useState(getRandomInt(playlist.length));
