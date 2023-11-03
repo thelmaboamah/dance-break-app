@@ -13,13 +13,13 @@ export default function AudioPlayer() {
     {
       songName: "Track 1",
       artistName: "Dance Break",
-      src: "audio/DanceBreak1.m4a"
+      src: "audio/DanceBreak1.m4a",
     },
     {
       songName: "Track 2",
       artistName: "Dance Break",
-      src: "audio/DanceBreak2.m4a"
-    }
+      src: "audio/DanceBreak2.m4a",
+    },
   ];
 
   const [songIndex, setSongIndex] = useState(getRandomInt(playlist.length));
